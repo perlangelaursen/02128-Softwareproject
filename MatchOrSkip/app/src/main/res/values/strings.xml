@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MatchOrSkip</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="playbutton">Play the game</string>
+    <string name="time">Time: 0</string>
+    <string name="score">Score: 0</string>
+</resources>

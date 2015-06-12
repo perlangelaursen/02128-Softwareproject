@@ -15,7 +15,8 @@
         android:text="@string/score"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:id="@+id/scoreview"/>
     <GridLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
