@@ -9,6 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 /**
  * Created by perlangelaursen on 10/06/15.
@@ -18,6 +21,7 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
     private ImageView matchphoto, currentphoto;
     private Image match, current;
     private Image[][] images;
+    private int currentIndex;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
@@ -37,12 +41,35 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
 
         setupGestureListenerToPhoto();
 
-        //
+        // TODO Setup image array
+
+        newPhotos();
+
         setupCountDown();
 
     }
 
-    // TODO Setup image array and random selection of images
+    // TODO Setup image array
+
+    private void newPhotos() {
+        Random r = new Random();
+        currentIndex = r.nextInt(3);
+        this.match = randomPhoto(currentIndex);
+        this.current = randomPhoto(currentIndex);
+        matchphoto.setImageResource(match.getDrawImage());
+        currentphoto.setImageResource(current.getDrawImage());
+    }
+
+    private void newCurrentPhoto() {
+        this.current = randomPhoto(currentIndex);
+        currentphoto.setImageResource(current.getDrawImage());
+    }
+
+    private Image randomPhoto(int i) {
+        Random r = new Random();
+        int j = r.nextInt(10);
+        return images[i][j];
+    }
 
     private void setupVerifyFragment() {
         verifyFragment = (VerifyFragment) getFragmentManager().findFragmentByTag(TAG_FRAGMENT);
@@ -80,6 +107,8 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
                 } catch (Exception e) {
                     // nothing for now
                 }
+
+
                 return true;
             }
 
@@ -116,11 +145,22 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
 
     @Override
     public String[] onPreExecute() {
-        return new String[2];
+        return new String[]{match.getID(), current.getID()};
     }
 
     @Override
-    public void onPostExecute(int results) {
+    public void onProgressUpdate(boolean input) {
+        String stringToToast = input ? getString(R.string.right) : getString(R.string.fail);
+        Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPostExecute(int results, boolean input) {
         score.setText("Score: " + results);
+        if(input) {
+            newPhotos();
+        } else {
+            newCurrentPhoto();
+        }
     }
 }

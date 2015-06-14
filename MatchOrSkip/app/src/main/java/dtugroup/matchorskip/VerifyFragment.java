@@ -11,10 +11,12 @@ import android.os.Bundle;
 public class VerifyFragment extends Fragment {
     interface Callbacks {
         String[] onPreExecute();
-        void onPostExecute(int results);
+        void onProgressUpdate(boolean input);
+        void onPostExecute(int results, boolean input);
     }
 
     private Callbacks mCallbacks;
+    private boolean right = false;
 
     @Override
     public void onAttach(Activity activity) {
@@ -57,15 +59,24 @@ public class VerifyFragment extends Fragment {
 
         @Override
         protected Void doInBackground(String... params) {
+            imageMatch(params);
+            publishProgress();
+
+            return null;
+        }
+
+        private void imageMatch(String[] params) {
             if(params[0].toLowerCase().equals("Bonus")) {
                 if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
                     addPoints = 5;
+                    right = true;
                 } else {
                     addPoints = -1;
                 }
             } else {
                 if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
                     addPoints = 2;
+                    right = true;
                 } else if(params[1].toLowerCase().equals("skip") && idMatch(data[0], data[1])) {
                     addPoints = -1;
                 } else if (params[1].toLowerCase().equals("keep") && !idMatch(data[0], data[1])) {
@@ -74,17 +85,20 @@ public class VerifyFragment extends Fragment {
                     addPoints = 0;
                 }
             }
-
-            return null;
         }
 
-        private boolean idMatch(String id1, String id2) {
-            return id1.equals(id2);
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            callbacks.onProgressUpdate(right);
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            callbacks.onPostExecute(addPoints);
+            callbacks.onPostExecute(addPoints, right);
+        }
+
+        private boolean idMatch(String id1, String id2) {
+            return id1.equals(id2);
         }
     }
 }
