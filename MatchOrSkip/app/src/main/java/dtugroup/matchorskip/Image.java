@@ -14,11 +14,11 @@ public class Image extends ImageView {
         super(context);
         this.id = id;
         this.drawImage = drawImage;
-        setImageResource(drawImage);
-        setAdjustViewBounds(true);
     }
 
-
+    public int getDrawImage() {
+        return drawImage;
+    }
 
     public String getID() {
         return id;

@@ -37,8 +37,8 @@ public class VerifyFragment extends Fragment {
         mCallbacks = null;
     }
 
-    public void start(String type) {
-        new CheckImageID(mCallbacks).execute(type);
+    public void start(String type, String input) {
+        new CheckImageID(mCallbacks).execute(type, input);
     }
 
     protected class CheckImageID extends AsyncTask<String, Void, Void> {
@@ -58,16 +58,20 @@ public class VerifyFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
             if(params[0].toLowerCase().equals("Bonus")) {
-                if(data[0].toLowerCase().equals("keep") && idMatch(data[1], data[2])) {
-                    addPoints = 2;
-                } else if(data[0].toLowerCase().equals("skip") && idMatch(data[1], data[2])) {
+                if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
+                    addPoints = 5;
+                } else {
                     addPoints = -1;
                 }
             } else {
-                if(data[0].toLowerCase().equals("keep") && idMatch(data[1], data[2])) {
+                if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
                     addPoints = 2;
-                } else if(data[0].toLowerCase().equals("skip") && idMatch(data[1], data[2])) {
+                } else if(params[1].toLowerCase().equals("skip") && idMatch(data[0], data[1])) {
                     addPoints = -1;
+                } else if (params[1].toLowerCase().equals("keep") && !idMatch(data[0], data[1])) {
+                    addPoints = 0;
+                } else if (params[1].toLowerCase().equals("skip") && !idMatch(data[0], data[1])) {
+                    addPoints = 0;
                 }
             }
 
