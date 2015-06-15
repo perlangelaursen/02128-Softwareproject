@@ -9,13 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainMenuActivity extends Activity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainmenu);
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MainMenuActivity extends Activity {
     }
 
     public void startGame(View view) {
-        Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
     }
 }

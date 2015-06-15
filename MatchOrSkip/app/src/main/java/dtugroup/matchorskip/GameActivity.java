@@ -1,9 +1,9 @@
 package dtugroup.matchorskip;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.FragmentActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * Created by perlangelaursen on 10/06/15
  */
-public class GameActivity extends Activity implements VerifyFragment.Callbacks,
+public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
         FinishDialogFragment.FinishDialogListener{
     private TextView timer, score;
     private ImageView matchphoto, currentphoto;
@@ -193,7 +193,7 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks,
             }
 
             public void onFinish() {
-                new FinishDialogFragment();
+                new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
     }
@@ -228,5 +228,10 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks,
     @Override
     public void onDialogNegativeClick() {
         finish();
+    }
+
+    @Override
+    public int getCurrentScore() {
+        return currentScore;
     }
 }
