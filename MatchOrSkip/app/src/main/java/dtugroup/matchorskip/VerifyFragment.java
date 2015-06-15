@@ -66,7 +66,7 @@ public class VerifyFragment extends Fragment {
         }
 
         private void imageMatch(String[] params) {
-            if(params[0].toLowerCase().equals("Bonus")) {
+            if(params[0].toLowerCase().equals("bonus")) {
                 if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
                     addPoints = 5;
                     right = true;
@@ -78,7 +78,7 @@ public class VerifyFragment extends Fragment {
                     addPoints = 2;
                     right = true;
                 } else if(params[1].toLowerCase().equals("skip") && idMatch(data[0], data[1])) {
-                    addPoints = -1;
+                    addPoints = 0;
                 } else if (params[1].toLowerCase().equals("keep") && !idMatch(data[0], data[1])) {
                     addPoints = 0;
                 } else if (params[1].toLowerCase().equals("skip") && !idMatch(data[0], data[1])) {

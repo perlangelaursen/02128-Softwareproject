@@ -7,4 +7,8 @@
     <string name="score">Score: 0</string>
     <string name="fail">Wrong!</string>
     <string name="right">Correct!</string>
+    <string name="gameover">Game Over!</string>
+    <string name="playagain">Do you want to play again?</string>
+    <string name="play">Play</string>
+    <string name="main">To Main Menu</string>
 </resources>
