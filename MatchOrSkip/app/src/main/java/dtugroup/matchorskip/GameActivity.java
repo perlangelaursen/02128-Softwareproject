@@ -22,6 +22,7 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
     private Image match, current;
     private Image[][] images;
     private int currentIndex;
+    private int currentScore;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
@@ -36,6 +37,7 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
         score = (TextView) findViewById(R.id.scoreview);
         matchphoto = (ImageView) findViewById(R.id.matchphoto);
         currentphoto = (ImageView) findViewById(R.id.currentphoto);
+        currentScore = 0;
 
         setupVerifyFragment();
 
@@ -156,7 +158,8 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
 
     @Override
     public void onPostExecute(int results, boolean input) {
-        score.setText("Score: " + results);
+        currentScore += results;
+        score.setText("Score: " + currentScore);
         if(input) {
             newPhotos();
         } else {
