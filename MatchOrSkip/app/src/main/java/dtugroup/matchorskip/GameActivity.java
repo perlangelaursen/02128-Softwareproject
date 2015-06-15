@@ -52,6 +52,7 @@ public class GameActivity extends Activity implements VerifyFragment.Callbacks{
     }
 
     // TODO Setup image array
+    // Hello
 
     private void newPhotos() {
         Random r = new Random();
