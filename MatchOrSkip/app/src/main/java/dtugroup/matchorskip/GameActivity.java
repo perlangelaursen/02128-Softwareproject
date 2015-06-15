@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 /**
- * Created by perlangelaursen on 10/06/15.
+ * Created by perlangelaursen on 10/06/15
  */
 public class GameActivity extends Activity implements VerifyFragment.Callbacks{
     private TextView timer, score;
