@@ -3,12 +3,10 @@ package dtugroup.matchorskip;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
 
 /**
  * Created by perlangelaursen on 15/06/15.
@@ -56,10 +54,5 @@ public class FinishDialogFragment extends DialogFragment {
             }
         });
         return builder.create();
-    }
-
-    @Override
-    public int show(FragmentManager transaction, String tag) {
-        return super.show(transaction, tag);
     }
 }
