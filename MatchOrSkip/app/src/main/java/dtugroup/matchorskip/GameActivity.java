@@ -59,46 +59,46 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupBonusImage() {
-        bonus = new Image(this, "Bonus", R.drawable.bonus);
+        bonus = new Image(this, "Bonus", R.drawable.bonus, true);
     }
 
     private void setupImageArray() {
         images = new Image[3][10];
         // Miscellaneous
-        images[0][0] = new Image(this, "A01", R.drawable.a01);
-        images[0][1] = new Image(this, "A02", R.drawable.a02);
-        images[0][2] = new Image(this, "A03", R.drawable.a03);
-        images[0][3] = new Image(this, "A04", R.drawable.a04);
-        images[0][4] = new Image(this, "A05", R.drawable.a05);
-        images[0][5] = new Image(this, "A06", R.drawable.a06);
-        images[0][6] = new Image(this, "A07", R.drawable.a07);
-        images[0][7] = new Image(this, "A08", R.drawable.a08);
-        images[0][8] = new Image(this, "A09", R.drawable.a09);
-        images[0][9] = new Image(this, "A10", R.drawable.a10);
+        images[0][0] = new Image(this, "A01", R.drawable.a01, false);
+        images[0][1] = new Image(this, "A02", R.drawable.a02, false);
+        images[0][2] = new Image(this, "A03", R.drawable.a03, false);
+        images[0][3] = new Image(this, "A04", R.drawable.a04, false);
+        images[0][4] = new Image(this, "A05", R.drawable.a05, false);
+        images[0][5] = new Image(this, "A06", R.drawable.a06, false);
+        images[0][6] = new Image(this, "A07", R.drawable.a07, false);
+        images[0][7] = new Image(this, "A08", R.drawable.a08, false);
+        images[0][8] = new Image(this, "A09", R.drawable.a09, false);
+        images[0][9] = new Image(this, "A10", R.drawable.a10, false);
 
         // Food
-        images[1][0] = new Image(this, "J01", R.drawable.j01);
-        images[1][1] = new Image(this, "J02", R.drawable.j02);
-        images[1][2] = new Image(this, "J03", R.drawable.j03);
-        images[1][3] = new Image(this, "J04", R.drawable.j04);
-        images[1][4] = new Image(this, "J05", R.drawable.j05);
-        images[1][5] = new Image(this, "J06", R.drawable.j06);
-        images[1][6] = new Image(this, "J07", R.drawable.j07);
-        images[1][7] = new Image(this, "J08", R.drawable.j08);
-        images[1][8] = new Image(this, "J09", R.drawable.j09);
-        images[1][9] = new Image(this, "J10", R.drawable.j10);
+        images[1][0] = new Image(this, "J01", R.drawable.j01, false);
+        images[1][1] = new Image(this, "J02", R.drawable.j02, false);
+        images[1][2] = new Image(this, "J03", R.drawable.j03, false);
+        images[1][3] = new Image(this, "J04", R.drawable.j04, false);
+        images[1][4] = new Image(this, "J05", R.drawable.j05, false);
+        images[1][5] = new Image(this, "J06", R.drawable.j06, false);
+        images[1][6] = new Image(this, "J07", R.drawable.j07, false);
+        images[1][7] = new Image(this, "J08", R.drawable.j08, false);
+        images[1][8] = new Image(this, "J09", R.drawable.j09, false);
+        images[1][9] = new Image(this, "J10", R.drawable.j10, false);
 
         // Sightseeing
-        images[2][0] = new Image(this, "T01", R.drawable.t01);
-        images[2][1] = new Image(this, "T02", R.drawable.t02);
-        images[2][2] = new Image(this, "T03", R.drawable.t03);
-        images[2][3] = new Image(this, "T04", R.drawable.t04);
-        images[2][4] = new Image(this, "T05", R.drawable.t05);
-        images[2][5] = new Image(this, "T06", R.drawable.t06);
-        images[2][6] = new Image(this, "T07", R.drawable.t07);
-        images[2][7] = new Image(this, "T08", R.drawable.t08);
-        images[2][8] = new Image(this, "T09", R.drawable.t09);
-        images[2][9] = new Image(this, "T10", R.drawable.t10);
+        images[2][0] = new Image(this, "T01", R.drawable.t01, false);
+        images[2][1] = new Image(this, "T02", R.drawable.t02, false);
+        images[2][2] = new Image(this, "T03", R.drawable.t03, false);
+        images[2][3] = new Image(this, "T04", R.drawable.t04, false);
+        images[2][4] = new Image(this, "T05", R.drawable.t05, false);
+        images[2][5] = new Image(this, "T06", R.drawable.t06, false);
+        images[2][6] = new Image(this, "T07", R.drawable.t07, false);
+        images[2][7] = new Image(this, "T08", R.drawable.t08, false);
+        images[2][8] = new Image(this, "T09", R.drawable.t09, false);
+        images[2][9] = new Image(this, "T10", R.drawable.t10, false);
     }
 
     private void newPhotos() {
@@ -144,13 +144,14 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         mGestureDetector = new GestureDetector(this, new GestureListener(verifyFragment));
 
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
-        currentphoto.setOnTouchListener(new OnTouchListener(){
+        currentphoto.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mGestureDetector.onTouchEvent(event);
                 return true;
-            }});
+            }
+        });
     }
 
     private void setupCountDown() {
@@ -167,8 +168,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
-    public String[] onPreExecute() {
-        return new String[]{match.getID(), current.getID()};
+    public Image[] onPreExecute() {
+        return new Image[]{match, current};
     }
 
     @Override

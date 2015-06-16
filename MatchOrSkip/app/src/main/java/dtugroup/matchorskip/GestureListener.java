@@ -21,22 +21,22 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
             // Left swipe
             if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("regular", "skip");
+                verifyFragment.start("skip");
             }
             // Right swipe
             else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("regular", "keep");
+                verifyFragment.start("keep");
             }
             // Top swipe
             else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("regular", "skip");
+                verifyFragment.start("skip");
             }
             // Bottom swipe
             else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("regular", "keep");
+                verifyFragment.start("keep");
             }
         } catch (Exception e) {
             // nothing for now
@@ -48,7 +48,7 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        verifyFragment.start("bonus", "keep");
+        verifyFragment.start("bonus");
         return true;
     }
 }

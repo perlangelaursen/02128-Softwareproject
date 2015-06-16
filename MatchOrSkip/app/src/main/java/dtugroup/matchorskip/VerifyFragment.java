@@ -10,7 +10,7 @@ import android.os.Bundle;
  */
 public class VerifyFragment extends Fragment {
     interface Callbacks {
-        String[] onPreExecute();
+        Image[] onPreExecute();
         void onProgressUpdate(boolean input);
         void onPostExecute(int results, boolean input);
     }
@@ -39,13 +39,13 @@ public class VerifyFragment extends Fragment {
         mCallbacks = null;
     }
 
-    public void start(String type, String input) {
-        new CheckImageID(mCallbacks).execute(type, input);
+    public void start(String input) {
+        new CheckImageID(mCallbacks).execute(input);
     }
 
     protected class CheckImageID extends AsyncTask<String, Void, Void> {
         private Callbacks callbacks;
-        private String[] data;
+        private Image[] data;
         private int addPoints;
 
         public CheckImageID(Callbacks callbacks) {
@@ -67,21 +67,25 @@ public class VerifyFragment extends Fragment {
 
         private void imageMatch(String[] params) {
             if(params[0].toLowerCase().equals("bonus")) {
-                if(params[1].toLowerCase().equals("keep")) {
+                if(data[1].isBonus()) {
                     addPoints = 5;
                     right = true;
                 } else {
                     addPoints = -1;
                 }
             } else {
-                if(params[1].toLowerCase().equals("keep") && idMatch(data[0], data[1])) {
+                if(params[0].toLowerCase().equals("keep") &&
+                        idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 2;
                     right = true;
-                } else if(params[1].toLowerCase().equals("skip") && idMatch(data[0], data[1])) {
+                } else if(params[0].toLowerCase().equals("skip") &&
+                        idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
-                } else if (params[1].toLowerCase().equals("keep") && !idMatch(data[0], data[1])) {
+                } else if (params[0].toLowerCase().equals("keep") &&
+                        !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
-                } else if (params[1].toLowerCase().equals("skip") && !idMatch(data[0], data[1])) {
+                } else if (params[0].toLowerCase().equals("skip") &&
+                        !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
                     right = true;
                 }
