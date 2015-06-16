@@ -44,4 +44,8 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
     }
+
+    public void instructions(View view) {
+
+    }
 }

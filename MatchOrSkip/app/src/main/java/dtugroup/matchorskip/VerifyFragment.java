@@ -11,7 +11,6 @@ import android.os.Bundle;
 public class VerifyFragment extends Fragment {
     interface Callbacks {
         Image[] onPreExecute();
-        void onProgressUpdate(boolean input);
         void onPostExecute(int results, boolean input);
     }
 
@@ -60,7 +59,6 @@ public class VerifyFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
             imageMatch(params);
-            publishProgress();
 
             return null;
         }
@@ -93,11 +91,6 @@ public class VerifyFragment extends Fragment {
                     right = false;
                 }
             }
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            callbacks.onProgressUpdate(right);
         }
 
         @Override

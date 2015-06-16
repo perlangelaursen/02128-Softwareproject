@@ -26,6 +26,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private int currentIndex;
     private int currentInc = 0;
     private int currentScore;
+    private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
@@ -168,7 +169,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time: " + millisUntilFinished / 1000);
@@ -181,6 +182,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        countDownTimer.cancel();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         finish();
@@ -189,12 +196,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public Image[] onPreExecute() {
         return new Image[]{match, current};
-    }
-
-    @Override
-    public void onProgressUpdate(boolean input) {
-        String stringToToast = input ? getString(R.string.right) : getString(R.string.fail);
-        //Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
