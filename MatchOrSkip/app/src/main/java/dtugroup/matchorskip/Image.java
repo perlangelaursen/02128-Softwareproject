@@ -10,10 +10,17 @@ public class Image extends ImageView {
     private String id;
     private int drawImage;
 
-    public Image(Context context, String id, int drawImage) {
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    private boolean bonus;
+
+    public Image(Context context, String id, int drawImage, boolean bonus) {
         super(context);
         this.id = id;
         this.drawImage = drawImage;
+        this.bonus = bonus;
     }
 
     public int getDrawImage() {
