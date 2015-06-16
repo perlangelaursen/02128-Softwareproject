@@ -13,4 +13,5 @@
     <string name="playagain">Do you want to play again?</string>
     <string name="play">Play</string>
     <string name="main">To Main Menu</string>
+    <string name="instructions">Instructions</string>
 </resources>
