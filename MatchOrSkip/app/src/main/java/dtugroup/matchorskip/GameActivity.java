@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -24,6 +23,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private Image match, current, bonus;
     private Image[][] images;
     private int currentIndex;
+    private int currentInc = 0;
     private int currentScore;
     private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
@@ -105,7 +105,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void newPhotos() {
         Random r = new Random();
-        currentIndex = r.nextInt(3);
+        currentInc++;
+        currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
         this.current = randomCurrentPhoto(currentIndex);
         matchphoto.setImageResource(match.getDrawImage());
@@ -177,6 +178,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
     public Image[] onPreExecute() {
         return new Image[]{match, current};
     }
@@ -184,7 +191,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onProgressUpdate(boolean input) {
         String stringToToast = input ? getString(R.string.right) : getString(R.string.fail);
-        Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
