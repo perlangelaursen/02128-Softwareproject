@@ -176,6 +176,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
     public Image[] onPreExecute() {
         return new Image[]{match, current};
     }
@@ -183,7 +189,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onProgressUpdate(boolean input) {
         String stringToToast = input ? getString(R.string.right) : getString(R.string.fail);
-        Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
