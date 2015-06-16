@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -179,9 +178,14 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        countDownTimer.cancel();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
-        countDownTimer.cancel();
         finish();
     }
 
