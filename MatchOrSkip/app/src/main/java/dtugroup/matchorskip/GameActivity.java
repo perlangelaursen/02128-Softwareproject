@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.SharedPreferences;
 
 import java.util.Random;
 
@@ -18,7 +19,7 @@ import java.util.Random;
  */
 public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
         FinishDialogFragment.FinishDialogListener{
-    private TextView timer, score;
+    private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
     private Image match, current, bonus;
     private Image[][] images;
@@ -29,6 +30,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
     private int currentID = 0;
+    SharedPreferences highscore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public void start() {
         this.timer = (TextView) findViewById(R.id.timeView);
         this.score = (TextView) findViewById(R.id.scoreview);
+        this.highscoreView = (TextView) findViewById(R.id.highscoreView);
+        highscoreView.setText("Highscore: " + getHighscore());
         this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
         this.currentScore = 0;
@@ -197,6 +201,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public void onPostExecute(int results, boolean input) {
         currentScore += results;
         score.setText("Score: " + currentScore);
+        if (currentScore > getHighscore()) {
+            highscoreView.setText("Highscore: " + currentScore);
+        }
         if(input) {
             newPhotos();
         } else {
@@ -218,4 +225,18 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public int getCurrentScore() {
         return currentScore;
     }
+
+    public void setHighscore(int score) {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        SharedPreferences.Editor editor = highscore.edit();
+        editor.putInt("key", score);
+        editor.commit();
+    }
+
+    public int getHighscore() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        int lastHighscore = highscore.getInt("key", 0);
+        return lastHighscore;
+    }
+
 }
