@@ -27,8 +27,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private static final int SWIPE_MIN_DISTANCE = 120;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +37,11 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     public void start() {
-        timer = (TextView) findViewById(R.id.timeView);
-        score = (TextView) findViewById(R.id.scoreview);
-        matchphoto = (ImageView) findViewById(R.id.matchphoto);
-        currentphoto = (ImageView) findViewById(R.id.currentphoto);
-        currentScore = 0;
+        this.timer = (TextView) findViewById(R.id.timeView);
+        this.score = (TextView) findViewById(R.id.scoreview);
+        this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
+        this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
+        this.currentScore = 0;
 
         setupVerifyFragment();
 
@@ -59,46 +57,46 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupBonusImage() {
-        bonus = new Image(this, "Bonus", R.drawable.Bonus);
+        bonus = new Image(this, "Bonus", R.drawable.bonus);
     }
 
     private void setupImageArray() {
         images = new Image[3][10];
         // Miscellaneous
-        images[0][0] = new Image(this, "A01", R.drawable.A01);
-        images[0][1] = new Image(this, "A02", R.drawable.A02);
-        images[0][2] = new Image(this, "A03", R.drawable.A03);
-        images[0][3] = new Image(this, "A04", R.drawable.A04);
-        images[0][4] = new Image(this, "A05", R.drawable.A05);
-        images[0][5] = new Image(this, "A06", R.drawable.A06);
-        images[0][6] = new Image(this, "A07", R.drawable.A07);
-        images[0][7] = new Image(this, "A08", R.drawable.A08);
-        images[0][8] = new Image(this, "A09", R.drawable.A09);
-        images[0][9] = new Image(this, "A10", R.drawable.A10);
+        images[0][0] = new Image(this, "A01", R.drawable.a01);
+        images[0][1] = new Image(this, "A02", R.drawable.a02);
+        images[0][2] = new Image(this, "A03", R.drawable.a03);
+        images[0][3] = new Image(this, "A04", R.drawable.a04);
+        images[0][4] = new Image(this, "A05", R.drawable.a05);
+        images[0][5] = new Image(this, "A06", R.drawable.a06);
+        images[0][6] = new Image(this, "A07", R.drawable.a07);
+        images[0][7] = new Image(this, "A08", R.drawable.a08);
+        images[0][8] = new Image(this, "A09", R.drawable.a09);
+        images[0][9] = new Image(this, "A10", R.drawable.a10);
 
         // Food
-        images[1][0] = new Image(this, "J01", R.drawable.J01);
-        images[1][1] = new Image(this, "J02", R.drawable.J02);
-        images[1][2] = new Image(this, "J03", R.drawable.J03);
-        images[1][3] = new Image(this, "J04", R.drawable.J04);
-        images[1][4] = new Image(this, "J05", R.drawable.J05);
-        images[1][5] = new Image(this, "J06", R.drawable.J06);
-        images[1][6] = new Image(this, "J07", R.drawable.J07);
-        images[1][7] = new Image(this, "J08", R.drawable.J08);
-        images[1][8] = new Image(this, "J09", R.drawable.J09);
-        images[1][9] = new Image(this, "J10", R.drawable.J10);
+        images[1][0] = new Image(this, "J01", R.drawable.j01);
+        images[1][1] = new Image(this, "J02", R.drawable.j02);
+        images[1][2] = new Image(this, "J03", R.drawable.j03);
+        images[1][3] = new Image(this, "J04", R.drawable.j04);
+        images[1][4] = new Image(this, "J05", R.drawable.j05);
+        images[1][5] = new Image(this, "J06", R.drawable.j06);
+        images[1][6] = new Image(this, "J07", R.drawable.j07);
+        images[1][7] = new Image(this, "J08", R.drawable.j08);
+        images[1][8] = new Image(this, "J09", R.drawable.j09);
+        images[1][9] = new Image(this, "J10", R.drawable.j10);
 
         // Sightseeing
-        images[2][0] = new Image(this, "T01", R.drawable.T01);
-        images[2][1] = new Image(this, "T02", R.drawable.T02);
-        images[2][2] = new Image(this, "T03", R.drawable.T03);
-        images[2][3] = new Image(this, "T04", R.drawable.T04);
-        images[2][4] = new Image(this, "T05", R.drawable.T05);
-        images[2][5] = new Image(this, "T06", R.drawable.T06);
-        images[2][6] = new Image(this, "T07", R.drawable.T07);
-        images[2][7] = new Image(this, "T08", R.drawable.T08);
-        images[2][8] = new Image(this, "T09", R.drawable.T09);
-        images[2][9] = new Image(this, "T10", R.drawable.T10);
+        images[2][0] = new Image(this, "T01", R.drawable.t01);
+        images[2][1] = new Image(this, "T02", R.drawable.t02);
+        images[2][2] = new Image(this, "T03", R.drawable.t03);
+        images[2][3] = new Image(this, "T04", R.drawable.t04);
+        images[2][4] = new Image(this, "T05", R.drawable.t05);
+        images[2][5] = new Image(this, "T06", R.drawable.t06);
+        images[2][6] = new Image(this, "T07", R.drawable.t07);
+        images[2][7] = new Image(this, "T08", R.drawable.t08);
+        images[2][8] = new Image(this, "T09", R.drawable.t09);
+        images[2][9] = new Image(this, "T10", R.drawable.t10);
     }
 
     private void newPhotos() {
@@ -135,54 +133,16 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupGestureListenerToPhoto() {
-        mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                try {
-                    // Left swipe
-                    if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE &&
-                            Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                        verifyFragment.start("regular", "skip");
-                    }
-                    // Right swipe
-                    else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
-                            Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                        verifyFragment.start("regular", "keep");
-                    }
-                    // Top swipe
-                    else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
-                            Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                        verifyFragment.start("regular", "skip");
-                    }
-                    // Bottom swipe
-                    else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
-                            Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                        verifyFragment.start("regular", "keep");
-                    }
-                } catch (Exception e) {
-                    // nothing for now
-                }
+        mGestureDetector = new GestureDetector(this, new GestureListener(verifyFragment));
 
+        this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
+        currentphoto.setOnTouchListener(new View.OnTouchListener(){
 
-                return true;
-            }
-
-            @Override
-            public boolean onDoubleTapEvent(MotionEvent e) {
-                verifyFragment.start("bonus", "keep");
-                return true;
-            }
-        });
-
-        currentphoto.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(mGestureDetector.onTouchEvent(event)) {
-                    return true;
-                }
-                return false;
-            }
-        });
+                mGestureDetector.onTouchEvent(event);
+                return true;
+            }});
     }
 
     private void setupCountDown() {
