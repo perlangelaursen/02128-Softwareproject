@@ -25,6 +25,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private Image[][] images;
     private int currentIndex;
     private int currentScore;
+    private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
@@ -163,7 +164,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time: " + millisUntilFinished / 1000);
