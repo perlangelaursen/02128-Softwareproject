@@ -85,12 +85,12 @@ public class VerifyFragment extends Fragment {
                     right = false;
                 } else if (params[0].toLowerCase().equals("keep") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
-                    addPoints = 0;
+                    addPoints = -1;
                     right = false;
                 } else if (params[0].toLowerCase().equals("skip") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
-                    right = true;
+                    right = false;
                 }
             }
         }
