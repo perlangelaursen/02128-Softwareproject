@@ -28,6 +28,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
     private static final String TAG_FRAGMENT = "verify_fragment";
+    private int currentID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,12 +119,19 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private Image randomPhoto(int i) {
         Random r = new Random();
         int j = r.nextInt(11);
-        if(j == 10) {
-            return bonus;
+        while (true) {
+            if (j != currentID) {
+                currentID = j;
+                if (j == 10) {
+                    return bonus;
+                } else {
+                    return images[i][j];
+                }
+            } else {
+                j = r.nextInt(11);
+            }
         }
-        else {
-            return images[i][j];
-        }
+
     }
 
     private void setupVerifyFragment() {
