@@ -33,6 +33,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
 
         start();
     }
