@@ -6,6 +6,7 @@
     <string name="playbutton">Play the game</string>
     <string name="time">Time: 0</string>
     <string name="score">Score: 0</string>
+    <string name="highscore">Highscore: 0</string>
     <string name="fail">Wrong!</string>
     <string name="right">Correct!</string>
     <string name="gameover">Game Over!</string>
