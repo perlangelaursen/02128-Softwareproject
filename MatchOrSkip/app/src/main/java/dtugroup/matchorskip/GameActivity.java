@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -180,18 +181,13 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onStop() {
         super.onStop();
+        countDownTimer.cancel();
         finish();
     }
 
     @Override
     public Image[] onPreExecute() {
         return new Image[]{match, current};
-    }
-
-    @Override
-    public void onProgressUpdate(boolean input) {
-        String stringToToast = input ? getString(R.string.right) : getString(R.string.fail);
-        //Toast.makeText(GameActivity.this, stringToToast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
