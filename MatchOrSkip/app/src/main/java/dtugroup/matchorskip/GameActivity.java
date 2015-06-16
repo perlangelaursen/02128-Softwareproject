@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -171,7 +172,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(10000, 1000) {
+        countDownTimer = new CountDownTimer(20000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time: " + millisUntilFinished / 1000);
@@ -232,6 +233,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
+    public void onDialogNeutralClick() {
+        Intent highscore = new Intent(GameActivity.this, HighScoreActivity.class);
+        startActivity(highscore);
+    }
+
+    @Override
     public int getLastHighScore() {
         return lastHighScore;
     }
@@ -252,6 +259,13 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         int lastHighscore = highscore.getInt("key", 0);
         return lastHighscore;
+    }
+
+    public void saveHighscore(int score, String name) {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        SharedPreferences.Editor editor = highscore.edit();
+        editor.putInt(name, score);
+        editor.commit();
     }
 
 }

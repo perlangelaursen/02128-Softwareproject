@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/highscore_title"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:id="@+id/highscoreTitle"/>
+    <ScrollView
+        android:layout_width="300sp"
+        android:layout_height="200sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60sp"
+        android:id="@id/scrollView"
+        android:background="#FFFFFF">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="10"
+            android:columnCount="2">
+            <TextView
+                android:id="@+id/point1"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name1"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point2"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name2"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point3"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name3"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point4"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name4"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point5"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name5"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point6"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name6"
+                android:layout_row="5"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point7"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name7"
+                android:layout_row="6"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point8"
+                android:layout_row="7"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name8"
+                android:layout_row="7"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point9"
+                android:layout_row="8"
+                android:layout_column="0"
+                android:text="1"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name9"
+                android:layout_row="8"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+            <TextView
+                android:id="@+id/point10"
+                android:layout_row="9"
+                android:layout_column="0"
+                android:textSize="30sp"
+                android:layout_width="60sp"
+                android:layout_marginLeft="20sp"/>
+            <TextView
+                android:id="@+id/name10"
+                android:layout_row="9"
+                android:layout_column="1"
+                android:textSize="30sp"
+                android:layout_marginLeft="20sp" />
+        </GridLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="170sp"
+        android:text="Play Again"
+        android:id="@+id/playagainbutton"
+        android:onClick="startGame" />
+    <Button
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="170sp"
+        android:text="Main Menu"
+        android:id="@+id/backbutton"
+        android:onClick="startMenu" />
+</RelativeLayout>

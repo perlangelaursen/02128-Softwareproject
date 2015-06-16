@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.preference.DialogPreference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.widget.EditText;
 
 /**
  * Created by perlangelaursen on 15/06/15.
@@ -17,9 +19,12 @@ public class FinishDialogFragment extends DialogFragment {
         public int getCurrentScore();
         public void onDialogNegativeClick();
         public int getLastHighScore();
+        public void onDialogNeutralClick();
+        public void saveHighscore(int score, String name);
     }
 
     private FinishDialogListener finishDialogListener;
+    private String name;
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,7 +46,19 @@ public class FinishDialogFragment extends DialogFragment {
         builder.setTitle(getString(R.string.gameover));
         if (finishDialogListener.getCurrentScore() > finishDialogListener.getLastHighScore()) {
             builder.setMessage(getString(R.string.congratulations) + "\n\n" + getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                    + "\n\n" + getString(R.string.submit));
+                    + "\n\n" + getString(R.string.typeName));
+
+            final EditText nameView = new EditText(getActivity());
+            builder.setView(nameView);
+
+            builder.setNeutralButton(getString(R.string.submit), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    name = nameView.getText().toString();
+                    finishDialogListener.saveHighscore(finishDialogListener.getCurrentScore(), name);
+                    finishDialogListener.onDialogNeutralClick();
+                }
+            });
         } else {
             builder.setMessage(getString(R.string.youscored) + finishDialogListener.getCurrentScore()
                     + "\n\n" + getString(R.string.playagain));
@@ -61,5 +78,9 @@ public class FinishDialogFragment extends DialogFragment {
         }
 
         return builder.create();
+    }
+
+    public String getName() {
+        return name;
     }
 }
