@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -136,7 +137,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         mGestureDetector = new GestureDetector(this, new GestureListener(verifyFragment));
 
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
-        currentphoto.setOnTouchListener(new View.OnTouchListener(){
+        currentphoto.setOnTouchListener(new OnTouchListener(){
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
