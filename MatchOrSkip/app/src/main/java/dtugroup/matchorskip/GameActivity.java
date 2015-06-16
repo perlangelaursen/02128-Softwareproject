@@ -26,6 +26,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private int currentIndex;
     private int currentInc = 0;
     private int currentScore;
+    private int lastHighScore;
     private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
@@ -46,7 +47,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.timer = (TextView) findViewById(R.id.timeView);
         this.score = (TextView) findViewById(R.id.scoreview);
         this.highscoreView = (TextView) findViewById(R.id.highscoreView);
-        highscoreView.setText("Highscore: " + getHighscore());
+        lastHighScore = getHighscore();
+        highscoreView.setText("Highscore: " + lastHighScore);
         this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
         this.currentScore = 0;
@@ -169,13 +171,17 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(10000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time: " + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
+                boolean highscore = (currentScore > getHighscore());
+                if(highscore) {
+                    setHighscore(currentScore);
+                }
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
@@ -184,6 +190,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onPause() {
         super.onPause();
+        if(currentScore > getHighscore()) {
+            setHighscore(currentScore);
+        }
         countDownTimer.cancel();
     }
 
@@ -220,6 +229,11 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNegativeClick() {
         finish();
+    }
+
+    @Override
+    public int getLastHighScore() {
+        return lastHighScore;
     }
 
     @Override

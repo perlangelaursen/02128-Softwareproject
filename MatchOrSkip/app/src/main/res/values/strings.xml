@@ -11,7 +11,9 @@
     <string name="right">Correct!</string>
     <string name="gameover">Game Over!</string>
     <string name="youscored">You scored: </string>
+    <string name="congratulations">Congratulations! You beat your highscore</string>
     <string name="playagain">Do you want to play again?</string>
+    <string name="submit">Type in your name</string>
     <string name="play">Play</string>
     <string name="main">To Main Menu</string>
     <string name="instructions">Instructions</string>
