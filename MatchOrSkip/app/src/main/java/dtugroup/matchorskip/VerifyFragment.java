@@ -72,6 +72,7 @@ public class VerifyFragment extends Fragment {
                     right = true;
                 } else {
                     addPoints = -1;
+                    right = false;
                 }
             } else {
                 if(params[0].toLowerCase().equals("keep") &&
@@ -81,9 +82,11 @@ public class VerifyFragment extends Fragment {
                 } else if(params[0].toLowerCase().equals("skip") &&
                         idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
+                    right = false;
                 } else if (params[0].toLowerCase().equals("keep") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
+                    right = false;
                 } else if (params[0].toLowerCase().equals("skip") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
