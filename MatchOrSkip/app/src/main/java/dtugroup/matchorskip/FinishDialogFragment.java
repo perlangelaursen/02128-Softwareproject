@@ -16,12 +16,12 @@ import android.widget.Toast;
  */
 public class FinishDialogFragment extends DialogFragment {
     public interface FinishDialogListener {
-        public void onDialogPositiveClick();
-        public int getCurrentScore();
-        public void onDialogNegativeClick();
-        public int getHighestScore();
-        public void onDialogNeutralClick();
-        public void saveHighscore(int score, String name);
+        void onDialogPositiveClick();
+        int getCurrentScore();
+        void onDialogNegativeClick();
+        int getHighestScore();
+        void onDialogNeutralClick();
+        void saveHighscore(int score, String name);
     }
 
     private FinishDialogListener finishDialogListener;
