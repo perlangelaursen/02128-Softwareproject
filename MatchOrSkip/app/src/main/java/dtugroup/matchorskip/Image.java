@@ -18,7 +18,6 @@ public class Image extends ImageView {
         super(context);
         this.id = id;
         this.drawImage = drawImage;
-        //this.bitmap = BitmapFactory.decodeResource(context.getResources(), drawImage);
         this.bonus = bonus;
     }
 
@@ -26,13 +25,11 @@ public class Image extends ImageView {
         super(context);
         this.id = id;
         this.bonus = bonus;
+        this.drawImage = 0;
         this.bitmap = bitmap;
     }
 
     public Bitmap getBitmap() {
-        if(bitmap == null) {
-            this.bitmap = BitmapFactory.decodeResource(getResources(), drawImage);
-        }
         return bitmap;
     }
 

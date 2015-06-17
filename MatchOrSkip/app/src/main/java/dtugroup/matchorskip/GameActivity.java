@@ -137,14 +137,20 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.current = (Image) randomCurrentPhoto(currentIndex);
 
         matchphoto.setImageResource(match.getDrawImage());
-        //currentphoto.setImageResource(current.getDrawImage());
-        currentphoto.setImageBitmap(current.getBitmap());
+        currentphoto.setImageResource(current.getDrawImage());
+
+        if(current.getBitmap() != null) {
+            currentphoto.setImageBitmap(current.getBitmap());
+        }
     }
 
     private void newCurrentPhoto() {
         this.current = (Image) randomCurrentPhoto(currentIndex);
-        //currentphoto.setImageResource(current.getDrawImage());
-        currentphoto.setImageBitmap(current.getBitmap());
+        currentphoto.setImageResource(current.getDrawImage());
+
+        if(current.getBitmap() != null) {
+            currentphoto.setImageBitmap(current.getBitmap());
+        }
     }
 
     private Image randomMatchPhoto(int i) {
