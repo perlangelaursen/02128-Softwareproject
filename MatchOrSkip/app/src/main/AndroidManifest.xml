@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dtugroup.matchorskip" >
 
+    <uses-permission android:name="ANDROID.PERMISSION.CAMERA"/>
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,12 @@
         <activity
             android:name=".GameActivity"
             android:label="@string/game_activity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".PhotoActivity"
+            android:label="@string/title_activity_photo"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".HighScoreActivity"

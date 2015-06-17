@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -64,6 +65,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         newPhotos();
 
         setupCountDown();
+        Log.i("WORK", "FOR FREAKING SAKE!");
     }
 
     private void setupBonusImage() {
@@ -191,7 +193,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onStop() {
         super.onStop();
-        finish();
     }
 
     @Override
@@ -278,4 +279,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return minKey;
     }
 
+    public static void setDefaultImage() {
+
+    }
 }

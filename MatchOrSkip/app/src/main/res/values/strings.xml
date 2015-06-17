@@ -26,4 +26,7 @@
     <string name="saveName">Your name has been saved</string>
     <string name="time0">"Time: "</string>
     <string name="highscoreactivity">HighScore Activity</string>
+    <string name="title_activity_photo">PhotoActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
