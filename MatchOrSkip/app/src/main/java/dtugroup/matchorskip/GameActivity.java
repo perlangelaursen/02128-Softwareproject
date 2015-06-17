@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -24,7 +25,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
     private Image match, current;
-    private ImageView bonus;
+    private ImageView bonus, backImageView;
     private Image[][] images;
     private int currentIndex;
     private int currentInc = 0;
@@ -55,6 +56,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
         this.currentScore = 0;
 
+        setupBackButton();
+
         setupVerifyFragment();
 
         setupGestureListenerToPhoto();
@@ -66,6 +69,17 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         newPhotos();
 
         setupCountDown();
+    }
+
+    private void setupBackButton() {
+        backImageView = (ImageView) findViewById(R.id.backImg);
+        backImageView.setImageResource(R.drawable.back);
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setupBonusImage() {
@@ -196,7 +210,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         countDownTimer = new CountDownTimer(12000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
+                timer.setText(""+millisUntilFinished / 1000);
             }
 
             public void onFinish() {
@@ -253,7 +267,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
-        finish();
+        Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
     }
 
     @Override
