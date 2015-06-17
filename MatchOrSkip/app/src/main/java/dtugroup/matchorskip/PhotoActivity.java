@@ -15,7 +15,6 @@ public class PhotoActivity extends Activity {
     private static final int REQUEST_CODE = 1;
     private ImageView cameraImageView;
     private ImageView defaultImageView;
-    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
