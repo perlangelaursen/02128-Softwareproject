@@ -69,7 +69,7 @@ public class VerifyFragment extends Fragment {
                     addPoints = 5;
                     right = true;
                 } else {
-                    addPoints = -1;
+                    addPoints = 0;
                     right = false;
                 }
             } else {
