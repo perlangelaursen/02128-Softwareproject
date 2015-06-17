@@ -1,17 +1,11 @@
 package dtugroup.matchorskip;
 
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,10 +71,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
         if (getIntent().getStringExtra("Card").equals("Camera")) {
-            Log.i("PRINT", "INSIDE");
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            bonus.setImageBitmap(rotate(image));
+            Bitmap rotated = rotate(image);
+            bonus = new Image(this, "Bonus", rotated, true);
         }
     }
     private Bitmap rotate(Bitmap bitmap){
@@ -134,13 +128,22 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
         this.current = (Image) randomCurrentPhoto(currentIndex);
+
         matchphoto.setImageResource(match.getDrawImage());
         currentphoto.setImageResource(current.getDrawImage());
+
+        if(current.getBitmap() != null) {
+            currentphoto.setImageBitmap(current.getBitmap());
+        }
     }
 
     private void newCurrentPhoto() {
         this.current = (Image) randomCurrentPhoto(currentIndex);
         currentphoto.setImageResource(current.getDrawImage());
+
+        if(current.getBitmap() != null) {
+            currentphoto.setImageBitmap(current.getBitmap());
+        }
     }
 
     private Image randomMatchPhoto(int i) {
