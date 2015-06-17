@@ -254,7 +254,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
         for (int i = 0; i < 9; i++) {
             int value = i+1;
-            String key = "name"+ value;
+            String key = "key"+ value;
             if (lastHighScore <= highscore.getInt(key,0)) {
                 lastHighScore = highscore.getInt(key,0);
             }
@@ -277,8 +277,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         String minKey = "";
         for (int i = 2; i <= 10; i++) {
-            minKey = "name1";
-            String key = "name" + i;
+            minKey = "key1";
+            String key = "key" + i;
             if (highscore.getInt(key, 0) <= highscore.getInt(minKey, 0)) {
                 minKey = key;
             }
