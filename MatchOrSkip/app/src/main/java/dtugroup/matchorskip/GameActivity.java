@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import java.util.Random;
  * Created by perlangelaursen on 10/06/15
  */
 public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
-        FinishDialogFragment.FinishDialogListener{
+        FinishDialogFragment.FinishDialogListener {
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
     private Image match, current;
@@ -76,10 +77,17 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
         if (getIntent().getStringExtra("Card").equals("Camera")) {
+            Log.i("PRINT", "INSIDE");
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            bonus.setImageBitmap(image);
+            bonus.setImageBitmap(rotate(image));
         }
+    }
+    private Bitmap rotate(Bitmap bitmap){
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return rotated;
     }
 
     private void setupImageArray() {
