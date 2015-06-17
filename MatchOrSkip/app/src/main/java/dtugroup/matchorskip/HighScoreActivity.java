@@ -24,6 +24,15 @@ public class HighScoreActivity extends Activity {
         finish();
     }
 
+    public void reset(View view) {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        SharedPreferences.Editor editor = highscore.edit();
+        editor.clear();
+        editor.commit();
+        onResume();
+
+    }
+
     public void setTextView(int nameId, int scoreId, int place) {
         TextView scoreView = (TextView) findViewById(scoreId);
         TextView nameView = (TextView) findViewById(nameId);
@@ -33,18 +42,11 @@ public class HighScoreActivity extends Activity {
 
     public void initArray() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        name[0] = highscore.getString("stringkey1", "");
-        name[1] = highscore.getString("stringkey2", "");
-        name[2] = highscore.getString("stringkey3", "");
-        name[3] = highscore.getString("stringkey4", "");
-        name[4] = highscore.getString("stringkey5", "");
 
-        point[0] = highscore.getInt("intkey1", 0);
-        point[1] = highscore.getInt("intkey2", 0);
-        point[2] = highscore.getInt("intkey3", 0);
-        point[3] = highscore.getInt("intkey4", 0);
-        point[4] = highscore.getInt("intkey5", 0);
-
+        for (int i = 1; i <= 5; i++) {
+            name[i-1] = highscore.getString("stringkey" + i, "");
+            point[i-1] = highscore.getInt("intkey" + i, 0);
+        }
     }
 
     public void update() {
@@ -81,9 +83,6 @@ public class HighScoreActivity extends Activity {
         setTextView(R.id.name3,R.id.point3,3);
         setTextView(R.id.name4,R.id.point4,4);
         setTextView(R.id.name5,R.id.point5,5);
-
-
-
     }
 
 }

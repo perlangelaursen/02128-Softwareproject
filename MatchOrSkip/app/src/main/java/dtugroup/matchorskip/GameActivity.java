@@ -190,7 +190,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(12000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
@@ -260,14 +260,14 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     public int getLowestScore() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        return highscore.getInt(getMinKey(),0);
+        return highscore.getInt("intkey" + getMinKey(),0);
     }
 
     public int getHighestScore() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         for (int i = 0; i < 9; i++) {
             int value = i+1;
-            String key = "key"+ value;
+            String key = "intkey"+ value;
             if (lastHighScore <= highscore.getInt(key,0)) {
                 lastHighScore = highscore.getInt(key,0);
             }
@@ -278,20 +278,21 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public void saveHighscore(int score, String name) {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         SharedPreferences.Editor editor = highscore.edit();
-        if (score > highscore.getInt(getMinKey(),0)) {
-            editor.remove(getMinKey());
-            editor.putString(getMinKey(), name);
-            editor.putInt(getMinKey(), score);
+        if (score > highscore.getInt("intkey" + getMinKey(),0)) {
+            editor.remove("intkey" + getMinKey());
+            editor.remove("stringkey" + getMinKey());
+            editor.putString("stringkey" + getMinKey(), name);
+            editor.putInt("intkey" + getMinKey(), score);
         }
         editor.commit();
     }
 
-    public String getMinKey() {
+    public int getMinKey() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        String minKey = "key1";
-        for (int i = 2; i <= 10; i++) {
-            String key = "key" + i;
-            if (highscore.getInt(key, 0) <= highscore.getInt(minKey, 0)) {
+        int minKey = 1;
+        for (int i = 2; i <= 5; i++) {
+            int key = i;
+            if (highscore.getInt("intkey" + key, 0) <= highscore.getInt("intkey" + minKey, 0)) {
                 minKey = key;
             }
         }

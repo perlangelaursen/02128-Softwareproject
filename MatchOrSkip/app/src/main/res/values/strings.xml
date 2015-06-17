@@ -27,4 +27,5 @@
     <string name="time0">"Time: "</string>
     <string name="highscoreactivity">HighScore Activity</string>
     <string name="title_activity_photo">PhotoActivity</string>
+    <string name="reset">Reset Highscore</string>
 </resources>
