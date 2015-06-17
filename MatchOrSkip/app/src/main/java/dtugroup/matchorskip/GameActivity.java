@@ -1,6 +1,6 @@
 package dtugroup.matchorskip;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -204,7 +203,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onPostExecute(int results, boolean input) {
-        currentScore += results;
+        if(currentScore + results >= 0) {
+            currentScore += results;
+        }
         score.setText(getString(R.string.score0) + currentScore);
         highscoreView.setText(getString(R.string.highscore0) + getHighestScore());
         if(input) {

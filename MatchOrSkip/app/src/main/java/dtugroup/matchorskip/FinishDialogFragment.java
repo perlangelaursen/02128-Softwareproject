@@ -46,16 +46,11 @@ public class FinishDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.gameover));
-        if (finishDialogListener.getCurrentScore() >= finishDialogListener.getLowestScore()) {
-            if (finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore()) {
-                builder.setMessage(getString(R.string.congratulations) + "\n\n" +
-                        getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                        + "\n\n" + getString(R.string.typeName));
-            } else {
-                builder.setMessage(getString(R.string.congratulations2) + "\n\n" +
-                        getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                        + "\n\n" + getString(R.string.typeName));
-            }
+        if (finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore()) {
+            builder.setMessage(getString(R.string.congratulations) + "\n\n" +
+                    getString(R.string.youscored) + finishDialogListener.getCurrentScore()
+                    + "\n\n" + getString(R.string.typeName));
+
             final EditText nameView = new EditText(getActivity());
             builder.setView(nameView);
 
