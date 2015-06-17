@@ -2,8 +2,13 @@ package dtugroup.matchorskip;
 
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -23,7 +28,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         FinishDialogFragment.FinishDialogListener{
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
-    private Image match, current, bonus;
+    private Image match, current;
+    private ImageView bonus;
     private Image[][] images;
     private int currentIndex;
     private int currentInc = 0;
@@ -65,11 +71,15 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         newPhotos();
 
         setupCountDown();
-        Log.i("WORK", "FOR FREAKING SAKE!");
     }
 
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
+        if (getIntent().getStringExtra("Card").equals("Camera")) {
+            Bundle extras = getIntent().getBundleExtra("Data");
+            Bitmap image = (Bitmap) extras.get("data");
+            bonus.setImageBitmap(image);
+        }
     }
 
     private void setupImageArray() {
@@ -115,13 +125,13 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         currentInc++;
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
-        this.current = randomCurrentPhoto(currentIndex);
+        this.current = (Image) randomCurrentPhoto(currentIndex);
         matchphoto.setImageResource(match.getDrawImage());
         currentphoto.setImageResource(current.getDrawImage());
     }
 
     private void newCurrentPhoto() {
-        this.current = randomCurrentPhoto(currentIndex);
+        this.current = (Image) randomCurrentPhoto(currentIndex);
         currentphoto.setImageResource(current.getDrawImage());
     }
 
@@ -131,7 +141,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return images[i][j];
     }
 
-    private Image randomCurrentPhoto(int i) {
+    private ImageView randomCurrentPhoto(int i) {
         Random r = new Random();
         int j = r.nextInt(11);
         while (true) {
@@ -193,6 +203,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onStop() {
         super.onStop();
+        finish();
     }
 
     @Override
