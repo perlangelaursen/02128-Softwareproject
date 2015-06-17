@@ -20,6 +20,7 @@ public class FinishDialogFragment extends DialogFragment {
         public int getCurrentScore();
         public void onDialogNegativeClick();
         public int getHighestScore();
+        public int getLowestScore();
         public void onDialogNeutralClick();
         public void saveHighscore(int score, String name);
     }

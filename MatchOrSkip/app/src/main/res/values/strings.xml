@@ -13,6 +13,7 @@
     <string name="gameover">Game Over!</string>
     <string name="youscored">You scored: </string>
     <string name="congratulations">Congratulations! You beat your highscore</string>
+    <string name="congratulations2">Congratulations! You made the highscore</string>
     <string name="playagain">Do you want to play again?</string>
     <string name="typeName">Type in your name</string>
     <string name="play">Play</string>
@@ -24,4 +25,5 @@
     <string name="score0">"Score: "</string>
     <string name="saveName">Your name has been saved</string>
     <string name="time0">"Time: "</string>
+    <string name="highscoreactivity">HighScore Activity</string>
 </resources>

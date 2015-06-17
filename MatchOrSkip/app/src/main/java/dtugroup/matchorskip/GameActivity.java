@@ -1,6 +1,6 @@
 package dtugroup.matchorskip;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -173,17 +172,13 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(20000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
-                boolean highscore = (currentScore > getHighestScore());
-                if(highscore) {
-                    setHighestScore(currentScore);
-                }
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
@@ -192,9 +187,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onPause() {
         super.onPause();
-        if(currentScore > getHighestScore()) {
-            setHighestScore(currentScore);
-        }
         countDownTimer.cancel();
     }
 
@@ -214,11 +206,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         if(currentScore + results >= 0) {
             currentScore += results;
         }
-
         score.setText(getString(R.string.score0) + currentScore);
         if (currentScore > getHighestScore()) {
             highscoreView.setText(getString(R.string.highscore0) + currentScore);
         }
+        score.setText(getString(R.string.score0) + currentScore);
+        highscoreView.setText(getString(R.string.highscore0) + getHighestScore());
         if(input) {
             newPhotos();
         } else {
@@ -239,6 +232,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -246,18 +240,16 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return currentScore;
     }
 
-    public void setHighestScore(int score) {
-        if (lastHighScore < score) {
-            lastHighScore = score;
-        }
+    public int getLowestScore() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        return highscore.getInt(getMinKey(),0);
     }
 
     public int getHighestScore() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-
         for (int i = 0; i < 9; i++) {
             int value = i+1;
-            String key = "name"+ value;
+            String key = "key"+ value;
             if (lastHighScore <= highscore.getInt(key,0)) {
                 lastHighScore = highscore.getInt(key,0);
             }
@@ -278,10 +270,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     public String getMinKey() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        String minKey = "";
+        String minKey = "key1";
         for (int i = 2; i <= 10; i++) {
-            minKey = "name1";
-            String key = "name" + i;
+            String key = "key" + i;
             if (highscore.getInt(key, 0) <= highscore.getInt(minKey, 0)) {
                 minKey = key;
             }
