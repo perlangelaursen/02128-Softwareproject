@@ -50,7 +50,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.score = (TextView) findViewById(R.id.scoreview);
         this.highscoreView = (TextView) findViewById(R.id.highscoreView);
         lastHighScore = getHighestScore();
-        highscoreView.setText("Highscore: " + lastHighScore);
+        highscoreView.setText(getString(R.string.highscore0) + lastHighScore);
         this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
         this.currentScore = 0;
@@ -173,10 +173,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(20000, 1000) {
+        countDownTimer = new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                timer.setText("Time: " + millisUntilFinished / 1000);
+                timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
@@ -212,9 +212,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onPostExecute(int results, boolean input) {
         currentScore += results;
-        score.setText("Score: " + currentScore);
+        score.setText(getString(R.string.score0) + currentScore);
         if (currentScore > getHighestScore()) {
-            highscoreView.setText("Highscore: " + currentScore);
+            highscoreView.setText(getString(R.string.highscore0) + currentScore);
         }
         if(input) {
             newPhotos();
@@ -235,7 +235,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onDialogNeutralClick() {
-        Toast.makeText(GameActivity.this, "Name saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -20,4 +20,8 @@
     <string name="submit">Submit</string>
     <string name="instructions">Instructions</string>
     <string name="BackToMain">Back To Main Menu</string>
+    <string name="highscore0">"Highscore: "</string>
+    <string name="score0">"Score: "</string>
+    <string name="saveName">Your name has been saved</string>
+    <string name="time0">"Time: "</string>
 </resources>

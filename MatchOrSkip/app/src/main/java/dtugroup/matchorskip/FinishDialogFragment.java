@@ -9,6 +9,7 @@ import android.preference.DialogPreference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by perlangelaursen on 15/06/15.
@@ -45,7 +46,8 @@ public class FinishDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.gameover));
         if (finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore()) {
-            builder.setMessage(getString(R.string.congratulations) + "\n\n" + getString(R.string.youscored) + finishDialogListener.getCurrentScore()
+            builder.setMessage(getString(R.string.congratulations) + "\n\n" +
+                    getString(R.string.youscored) + finishDialogListener.getCurrentScore()
                     + "\n\n" + getString(R.string.typeName));
 
             final EditText nameView = new EditText(getActivity());
