@@ -32,6 +32,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private Image match, current;
     private ImageView bonus;
     private Image[][] images;
+    private Bitmap[][] bitmaps;
     private int currentIndex;
     private int currentInc = 0;
     private int currentScore;
@@ -80,7 +81,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             Log.i("PRINT", "INSIDE");
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            bonus.setImageBitmap(rotate(image));
+            bonus = new Image(this, "Bonus", image, true);
         }
     }
     private Bitmap rotate(Bitmap bitmap){
@@ -134,13 +135,16 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
         this.current = (Image) randomCurrentPhoto(currentIndex);
+
         matchphoto.setImageResource(match.getDrawImage());
-        currentphoto.setImageResource(current.getDrawImage());
+        //currentphoto.setImageResource(current.getDrawImage());
+        currentphoto.setImageBitmap(current.getBitmap());
     }
 
     private void newCurrentPhoto() {
         this.current = (Image) randomCurrentPhoto(currentIndex);
-        currentphoto.setImageResource(current.getDrawImage());
+        //currentphoto.setImageResource(current.getDrawImage());
+        currentphoto.setImageBitmap(current.getBitmap());
     }
 
     private Image randomMatchPhoto(int i) {
