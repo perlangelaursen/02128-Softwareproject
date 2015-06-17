@@ -5,24 +5,22 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Created by perlangelaursen on 15/06/15.
  */
 public class FinishDialogFragment extends DialogFragment {
     public interface FinishDialogListener {
-        public void onDialogPositiveClick();
-        public int getCurrentScore();
-        public void onDialogNegativeClick();
-        public int getHighestScore();
-        public int getLowestScore();
-        public void onDialogNeutralClick();
-        public void saveHighscore(int score, String name);
+        void onDialogPositiveClick();
+        int getCurrentScore();
+        void onDialogNegativeClick();
+        int getHighestScore();
+        int getLowestScore();
+        void onDialogNeutralClick();
+        void saveHighscore(int score, String name);
     }
 
     private FinishDialogListener finishDialogListener;
