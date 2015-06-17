@@ -19,10 +19,8 @@ public class HighScoreActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
-
     }
 
     public void backToMainMenu(View view) {
@@ -41,7 +39,7 @@ public class HighScoreActivity extends Activity {
 
         for (int i = 1; i <= 10; i++) {
             name[i-1] = highscore.getString("key"+i, "");
-            point[i-1] = highscore.getInt("key"+i, 0);
+            point[i-1] = highscore.getInt("key" + i, 0);
         }
 
         int temp1;
