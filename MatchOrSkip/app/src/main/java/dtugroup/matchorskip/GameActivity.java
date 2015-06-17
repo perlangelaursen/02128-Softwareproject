@@ -211,7 +211,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onPostExecute(int results, boolean input) {
-        currentScore += results;
+        if(currentScore + results >= 0) {
+            currentScore += results;
+        }
+
         score.setText(getString(R.string.score0) + currentScore);
         if (currentScore > getHighestScore()) {
             highscoreView.setText(getString(R.string.highscore0) + currentScore);
