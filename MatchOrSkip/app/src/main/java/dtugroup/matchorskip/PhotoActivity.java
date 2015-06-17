@@ -48,6 +48,7 @@ public class PhotoActivity extends Activity {
             public void onClick(View v) {
                 Intent defaultIntent = new Intent(PhotoActivity.this, GameActivity.class);
                 defaultIntent.putExtra("Card", "Default");
+                defaultIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(defaultIntent);
             }
         });

@@ -82,6 +82,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         });
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0); //remove animation
+    }
+
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
         if (getIntent().getStringExtra("Card").equals("Camera")) {
