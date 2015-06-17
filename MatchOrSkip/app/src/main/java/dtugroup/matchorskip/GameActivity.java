@@ -1,15 +1,10 @@
 package dtugroup.matchorskip;
 
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -32,7 +27,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private Image match, current;
     private ImageView bonus;
     private Image[][] images;
-    private Bitmap[][] bitmaps;
     private int currentIndex;
     private int currentInc = 0;
     private int currentScore;
