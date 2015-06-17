@@ -2,20 +2,17 @@ package dtugroup.matchorskip;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import java.util.Map;
 
 /**
  * Created by annaolgaardnielsen on 16/06/15.
  */
 public class HighScoreActivity extends Activity {
     private SharedPreferences highscore;
-    private String[] name;
-    private int[] point;
+    private String[] name = new String[10];
+    private int[] point = new int[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,50 +27,62 @@ public class HighScoreActivity extends Activity {
     public void setTextView(int nameId, int scoreId, int place) {
         TextView scoreView = (TextView) findViewById(scoreId);
         TextView nameView = (TextView) findViewById(nameId);
-        scoreView.setText(point[10-(place+1)]);
-        nameView.setText(name[10-(place+1)]);
+        scoreView.setText("" + point[place-1]);
+        nameView.setText("" + name[place - 1]);
+    }
+
+    public void initArray() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        name[0] = highscore.getString("stringkey1", "");
+        name[1] = highscore.getString("stringkey2", "");
+        name[2] = highscore.getString("stringkey3", "");
+        name[3] = highscore.getString("stringkey4", "");
+        name[4] = highscore.getString("stringkey5", "");
+
+        point[0] = highscore.getInt("intkey1", 0);
+        point[1] = highscore.getInt("intkey2", 0);
+        point[2] = highscore.getInt("intkey3", 0);
+        point[3] = highscore.getInt("intkey4", 0);
+        point[4] = highscore.getInt("intkey5", 0);
+
     }
 
     public void update() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        initArray();
+        sort();
+    }
 
-        for (int i = 1; i <= 10; i++) {
-            name[i-1] = highscore.getString("key"+i, "");
-            point[i-1] = highscore.getInt("key" + i, 0);
-        }
-
-        int temp1;
-        String temp2;
-        for (int j = 0; j <= 9; j++) {
-            for (int k = j; k > 0; k--) {
-                if (point[j] < point[j-1]) {
-                    temp1 = point[j];
-                    temp2 = name[j];
-                    point[j] = point[j-1];
-                    name[j] = name[j-1];
-                    point[j-1] = temp1;
-                    name[j-1] = temp2;
-                }
+    public void sort() {
+        int temp1 = 0;
+        String temp2 = null;
+        for(int i = 1; i < 10; i++) {
+            int key = point[i];
+            int j = i - 1;
+            while(j >= 0 && key > point[j]) {
+                temp1 = point[j+1];
+                temp2 = name[j+1];
+                point[j + 1] = point[j];
+                name[j + 1] = name[j];
+                point[j] = temp1;
+                name[j] = temp2;
+                j--;
             }
+            point[j + 1] = key;
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         update();
-
-        setTextView(R.id.name1,R.id.point1,1);
+        setTextView(R.id.name1, R.id.point1, 1);
         setTextView(R.id.name2,R.id.point2,2);
         setTextView(R.id.name3,R.id.point3,3);
         setTextView(R.id.name4,R.id.point4,4);
         setTextView(R.id.name5,R.id.point5,5);
-        setTextView(R.id.name6,R.id.point6,6);
-        setTextView(R.id.name7,R.id.point7,7);
-        setTextView(R.id.name8,R.id.point8,8);
-        setTextView(R.id.name9,R.id.point9,9);
-        setTextView(R.id.name10,R.id.point10,10);
+
+
 
     }
 
