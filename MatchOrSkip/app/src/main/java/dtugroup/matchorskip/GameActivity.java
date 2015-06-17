@@ -1,9 +1,17 @@
 package dtugroup.matchorskip;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,10 +26,11 @@ import java.util.Random;
  * Created by perlangelaursen on 10/06/15
  */
 public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
-        FinishDialogFragment.FinishDialogListener{
+        FinishDialogFragment.FinishDialogListener {
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
-    private Image match, current, bonus;
+    private Image match, current;
+    private ImageView bonus;
     private Image[][] images;
     private int currentIndex;
     private int currentInc = 0;
@@ -67,6 +76,18 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
+        if (getIntent().getStringExtra("Card").equals("Camera")) {
+            Log.i("PRINT", "INSIDE");
+            Bundle extras = getIntent().getBundleExtra("Data");
+            Bitmap image = (Bitmap) extras.get("data");
+            bonus.setImageBitmap(rotate(image));
+        }
+    }
+    private Bitmap rotate(Bitmap bitmap){
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return rotated;
     }
 
     private void setupImageArray() {
@@ -109,17 +130,16 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void newPhotos() {
-        Random r = new Random();
         currentInc++;
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
-        this.current = randomCurrentPhoto(currentIndex);
+        this.current = (Image) randomCurrentPhoto(currentIndex);
         matchphoto.setImageResource(match.getDrawImage());
         currentphoto.setImageResource(current.getDrawImage());
     }
 
     private void newCurrentPhoto() {
-        this.current = randomCurrentPhoto(currentIndex);
+        this.current = (Image) randomCurrentPhoto(currentIndex);
         currentphoto.setImageResource(current.getDrawImage());
     }
 
@@ -129,7 +149,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return images[i][j];
     }
 
-    private Image randomCurrentPhoto(int i) {
+    private ImageView randomCurrentPhoto(int i) {
         Random r = new Random();
         int j = r.nextInt(11);
         while (true) {
@@ -170,7 +190,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(20000, 1000) {
+        countDownTimer = new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
@@ -203,6 +223,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public void onPostExecute(int results, boolean input) {
         if(currentScore + results >= 0) {
             currentScore += results;
+        }
+        score.setText(getString(R.string.score0) + currentScore);
+        if (currentScore > getHighestScore()) {
+            highscoreView.setText(getString(R.string.highscore0) + currentScore);
         }
         score.setText(getString(R.string.score0) + currentScore);
         highscoreView.setText(getString(R.string.highscore0) + getHighestScore());
@@ -274,4 +298,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return minKey;
     }
 
+    public static void setDefaultImage() {
+
+    }
 }
