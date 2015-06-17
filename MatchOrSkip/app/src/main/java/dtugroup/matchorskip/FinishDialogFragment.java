@@ -45,6 +45,7 @@ public class FinishDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.gameover));
+        builder.setCancelable(false);
         if (finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore()) {
             builder.setMessage(getString(R.string.congratulations) + "\n\n" +
                     getString(R.string.youscored) + finishDialogListener.getCurrentScore()
