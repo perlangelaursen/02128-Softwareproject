@@ -72,10 +72,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private void setupBonusImage() {
         bonus = new Image(this, "Bonus", R.drawable.bonus, true);
         if (getIntent().getStringExtra("Card").equals("Camera")) {
-            Log.i("PRINT", "INSIDE");
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            bonus = new Image(this, "Bonus", image, true);
+            Bitmap rotated = rotate(image);
+            bonus = new Image(this, "Bonus", rotated, true);
         }
     }
     private Bitmap rotate(Bitmap bitmap){

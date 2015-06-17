@@ -82,7 +82,7 @@ public class PhotoActivity extends Activity {
                 gameIntent.putExtra("Data", extras);
                 startActivity(gameIntent);
             } else {
-                Toast.makeText(this, "Photo could not be saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Photo was not saved", Toast.LENGTH_LONG).show();
             }
         }
     }
