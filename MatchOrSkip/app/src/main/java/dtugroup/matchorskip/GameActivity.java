@@ -110,7 +110,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void newPhotos() {
-        Random r = new Random();
         currentInc++;
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
