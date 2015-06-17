@@ -25,7 +25,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/playbutton"
         android:layout_centerHorizontal="true"
+        android:id="@+id/instructions"
         android:text="@string/instructions"
         android:textAllCaps="false"
         android:onClick="instructions"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/highscoreButton"
+        android:layout_below="@+id/instructions"
+        android:layout_centerHorizontal="true"
+        android:text="High Score"
+        android:textAllCaps="false"
+        android:onClick="highscore"/>
 </RelativeLayout>
