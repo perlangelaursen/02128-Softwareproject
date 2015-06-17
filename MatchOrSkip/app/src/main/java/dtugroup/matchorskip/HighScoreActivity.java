@@ -32,17 +32,34 @@ public class HighScoreActivity extends Activity {
     public void setTextView(int nameId, int scoreId, int place) {
         TextView scoreView = (TextView) findViewById(scoreId);
         TextView nameView = (TextView) findViewById(nameId);
-        scoreView.setText(point[place-1]);
-        nameView.setText(name[place - 1]);
+        scoreView.setText(point[10-(place+1)]);
+        nameView.setText(name[10-(place+1)]);
     }
 
     public void update() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        SharedPreferences.Editor editor = highscore.edit();
 
-        for (int i = 0; i < 10; i++) {
-            
+        for (int i = 1; i <= 10; i++) {
+            name[i-1] = highscore.getString("key"+i, "");
+            point[i-1] = highscore.getInt("key"+i, 0);
         }
+
+        int temp1;
+        String temp2;
+        for (int j = 0; j <= 9; j++) {
+            for (int k = j; k > 0; k--) {
+                if (point[j] < point[j-1]) {
+                    temp1 = point[j];
+                    temp2 = name[j];
+                    point[j] = point[j-1];
+                    name[j] = name[j-1];
+                    point[j-1] = temp1;
+                    name[j-1] = temp2;
+                }
+            }
+        }
+
+
 
     }
 
