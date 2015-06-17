@@ -48,7 +48,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.timer = (TextView) findViewById(R.id.timeView);
         this.score = (TextView) findViewById(R.id.scoreview);
         this.highscoreView = (TextView) findViewById(R.id.highscoreView);
-        lastHighScore = getHighscore();
+        lastHighScore = getHighestScore();
         highscoreView.setText("Highscore: " + lastHighScore);
         this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
@@ -179,9 +179,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
 
             public void onFinish() {
-                boolean highscore = (currentScore > getHighscore());
+                boolean highscore = (currentScore > getHighestScore());
                 if(highscore) {
-                    setHighscore(currentScore);
+                    setHighestScore(currentScore);
                 }
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
@@ -191,8 +191,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onPause() {
         super.onPause();
-        if(currentScore > getHighscore()) {
-            setHighscore(currentScore);
+        if(currentScore > getHighestScore()) {
+            setHighestScore(currentScore);
         }
         countDownTimer.cancel();
     }
@@ -212,7 +212,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     public void onPostExecute(int results, boolean input) {
         currentScore += results;
         score.setText("Score: " + currentScore);
-        if (currentScore > getHighscore()) {
+        if (currentScore > getHighestScore()) {
             highscoreView.setText("Highscore: " + currentScore);
         }
         if(input) {
@@ -239,33 +239,51 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     @Override
-    public int getLastHighScore() {
-        return lastHighScore;
-    }
-
-    @Override
     public int getCurrentScore() {
         return currentScore;
     }
 
-    public void setHighscore(int score) {
-        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        SharedPreferences.Editor editor = highscore.edit();
-        editor.putInt("key", score);
-        editor.commit();
+    public void setHighestScore(int score) {
+        if (lastHighScore < score) {
+            lastHighScore = score;
+        }
     }
 
-    public int getHighscore() {
+    public int getHighestScore() {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        int lastHighscore = highscore.getInt("key", 0);
-        return lastHighscore;
+
+        for (int i = 0; i < 9; i++) {
+            int value = i+1;
+            String key = "name"+ value;
+            if (lastHighScore <= highscore.getInt(key,0)) {
+                lastHighScore = highscore.getInt(key,0);
+            }
+        }
+        return lastHighScore;
     }
 
     public void saveHighscore(int score, String name) {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         SharedPreferences.Editor editor = highscore.edit();
-        editor.putInt(name, score);
+        if (score > highscore.getInt(getMinKey(),0)) {
+            editor.remove(getMinKey());
+            editor.putString(getMinKey(), name);
+            editor.putInt(getMinKey(), score);
+        }
         editor.commit();
+    }
+
+    public String getMinKey() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        String minKey = "";
+        for (int i = 2; i <= 10; i++) {
+            minKey = "name1";
+            String key = "name" + i;
+            if (highscore.getInt(key, 0) <= highscore.getInt(minKey, 0)) {
+                minKey = key;
+            }
+        }
+        return minKey;
     }
 
 }
