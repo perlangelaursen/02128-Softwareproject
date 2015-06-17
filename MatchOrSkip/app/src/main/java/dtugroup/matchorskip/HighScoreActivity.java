@@ -58,9 +58,6 @@ public class HighScoreActivity extends Activity {
                 }
             }
         }
-
-
-
     }
 
     @Override
@@ -75,7 +72,7 @@ public class HighScoreActivity extends Activity {
         setTextView(R.id.name4,R.id.point4,4);
         setTextView(R.id.name5,R.id.point5,5);
         setTextView(R.id.name6,R.id.point6,6);
-        setTextView(R.id.name7, R.id.point7, 7);
+        setTextView(R.id.name7,R.id.point7,7);
         setTextView(R.id.name8,R.id.point8,8);
         setTextView(R.id.name9,R.id.point9,9);
         setTextView(R.id.name10,R.id.point10,10);

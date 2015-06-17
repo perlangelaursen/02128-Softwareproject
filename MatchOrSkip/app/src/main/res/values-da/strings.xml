@@ -24,4 +24,5 @@
     <string name="score0">"Score: "</string>
     <string name="saveName">Dit navn er gemt</string>
     <string name="time0">"Tid: "</string>
+    <string name="highscoreactivity">HighScore Activity</string>
 </resources>
