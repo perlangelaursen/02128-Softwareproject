@@ -16,9 +16,8 @@
     <string name="playagain">Do you want to play again?</string>
     <string name="typeName">Type in your name</string>
     <string name="play">Play</string>
-    <string name="playAgain">Play Again</string>
     <string name="main">To Main Menu</string>
-    <string name="main2">Main Menu</string>
     <string name="submit">Submit</string>
     <string name="instructions">Instructions</string>
+    <string name="BackToMain">Back To Main Menu</string>
 </resources>

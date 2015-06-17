@@ -62,20 +62,20 @@ public class FinishDialogFragment extends DialogFragment {
         } else {
             builder.setMessage(getString(R.string.youscored) + finishDialogListener.getCurrentScore()
                     + "\n\n" + getString(R.string.playagain));
-            builder.setPositiveButton(getString(R.string.play), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finishDialogListener.onDialogPositiveClick();
-                }
-            });
-
-            builder.setNegativeButton(getString(R.string.main), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finishDialogListener.onDialogNegativeClick();
-                }
-            });
         }
+        builder.setPositiveButton(getString(R.string.play), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishDialogListener.onDialogPositiveClick();
+            }
+        });
+
+        builder.setNegativeButton(getString(R.string.main), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishDialogListener.onDialogNegativeClick();
+            }
+        });
 
         return builder.create();
     }

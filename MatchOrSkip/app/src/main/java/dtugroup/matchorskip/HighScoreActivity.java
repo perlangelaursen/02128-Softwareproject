@@ -1,7 +1,6 @@
 package dtugroup.matchorskip;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -14,10 +13,6 @@ import java.util.Map;
  * Created by annaolgaardnielsen on 16/06/15.
  */
 public class HighScoreActivity extends Activity {
-    public interface CallbackToPreviousScreen {
-        void backToPreviousScreen();
-    }
-
     private SharedPreferences highscore;
     private String[] name;
     private int[] point;
@@ -30,14 +25,8 @@ public class HighScoreActivity extends Activity {
 
     }
 
-    public void startMenu(View view) {
-        Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void startGame(View view) {
-        Intent intent = new Intent(HighScoreActivity.this, GameActivity.class);
-        startActivity(intent);
+    public void backToMainMenu(View view) {
+        finish();
     }
 
     public void setTextView(int nameId, int scoreId, int place) {

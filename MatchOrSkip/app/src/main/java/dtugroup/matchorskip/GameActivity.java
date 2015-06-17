@@ -12,6 +12,7 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -234,8 +235,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onDialogNeutralClick() {
-        Intent highscore = new Intent(GameActivity.this, HighScoreActivity.class);
-        startActivity(highscore);
+        Toast.makeText(GameActivity.this, "Name saved", Toast.LENGTH_SHORT).show();
     }
 
     @Override
