@@ -44,29 +44,32 @@ public class HighScoreActivity extends Activity {
         TextView scoreView = (TextView) findViewById(scoreId);
         TextView nameView = (TextView) findViewById(nameId);
         scoreView.setText(point[place-1]);
-        nameView.setText(name[place-1]);
+        nameView.setText(name[place - 1]);
+    }
+
+    public void update() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        SharedPreferences.Editor editor = highscore.edit();
+
+        for (int i = 0; i < 10; i++) {
+            
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        update();
 
-        name = new String[10];
-        point = new int[10];
-
-        for (int i = 1; i <= 10; i++) {
-            name[i-1] = highscore.getString("name" + i, "");
-            point[i-1] = highscore.getInt("name" + i, 0);
-        }
         setTextView(R.id.name1,R.id.point1,1);
         setTextView(R.id.name2,R.id.point2,2);
         setTextView(R.id.name3,R.id.point3,3);
         setTextView(R.id.name4,R.id.point4,4);
         setTextView(R.id.name5,R.id.point5,5);
         setTextView(R.id.name6,R.id.point6,6);
-        setTextView(R.id.name7,R.id.point7,7);
+        setTextView(R.id.name7, R.id.point7, 7);
         setTextView(R.id.name8,R.id.point8,8);
         setTextView(R.id.name9,R.id.point9,9);
         setTextView(R.id.name10,R.id.point10,10);
