@@ -14,6 +14,9 @@ import java.util.Map;
  * Created by annaolgaardnielsen on 16/06/15.
  */
 public class HighScoreActivity extends Activity {
+    public interface CallbackToPreviousScreen {
+        void backToPreviousScreen();
+    }
 
     private SharedPreferences highscore;
     private String[] name;
