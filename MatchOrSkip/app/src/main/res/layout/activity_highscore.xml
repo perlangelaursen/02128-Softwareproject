@@ -102,7 +102,7 @@
             android:layout_marginStart="20sp" />
     </GridLayout>
     <Button
-        android:layout_width="180sp"
+        android:layout_width="190sp"
         android:layout_marginStart="110sp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -111,7 +111,7 @@
         android:textAllCaps="false"
         android:onClick="backToMainMenu"/>
     <Button
-        android:layout_width="180sp"
+        android:layout_width="190sp"
         android:layout_marginStart="310sp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
