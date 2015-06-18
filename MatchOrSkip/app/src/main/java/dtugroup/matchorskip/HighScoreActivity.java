@@ -1,6 +1,7 @@
 package dtugroup.matchorskip;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,9 @@ public class HighScoreActivity extends Activity {
     }
 
     public void backToMainMenu(View view) {
-        finish();
+        Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     public void reset(View view) {

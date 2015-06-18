@@ -15,6 +15,7 @@ public class PhotoActivity extends Activity {
     private static final int REQUEST_CODE = 1;
     private ImageView cameraImageView;
     private ImageView defaultImageView;
+    private ImageView backImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +25,11 @@ public class PhotoActivity extends Activity {
         //Buttons
         cameraImageView = (ImageView) findViewById(R.id.cameraImg);
         defaultImageView = (ImageView) findViewById(R.id.defaultImg);
-        cameraImageView.setImageResource(R.drawable.bonus);
-        defaultImageView.setImageResource(R.drawable.bonus);
+        cameraImageView.setImageResource(R.drawable.camerabtn);
+        defaultImageView.setImageResource(R.drawable.defaultbtn);
 
+        backImageView = (ImageView) findViewById(R.id.backImg);
+        backImageView.setImageResource(R.drawable.back);
         setupListeners();
     }
 
@@ -45,7 +48,14 @@ public class PhotoActivity extends Activity {
             public void onClick(View v) {
                 Intent defaultIntent = new Intent(PhotoActivity.this, GameActivity.class);
                 defaultIntent.putExtra("Card", "Default");
+                defaultIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(defaultIntent);
+                finish();
+            }
+        });
+        backImageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
