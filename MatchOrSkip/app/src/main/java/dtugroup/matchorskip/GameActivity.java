@@ -326,8 +326,4 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         }
         return minKey;
     }
-
-    public static void setDefaultImage() {
-
-    }
 }
