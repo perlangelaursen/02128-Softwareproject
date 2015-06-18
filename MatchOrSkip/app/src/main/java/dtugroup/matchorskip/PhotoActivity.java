@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * Created by anhvan on 13/06/15
+ */
+
 
 public class PhotoActivity extends Activity {
     private static final int REQUEST_CODE = 1;
