@@ -7,7 +7,6 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,6 +15,7 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Random;
 
 /**
@@ -81,7 +81,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     protected void onResume() {
         super.onResume();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        streamVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        streamVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+                / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         soundCorrect = soundPool.load(this, R.raw.buttoncorrect, 1);
         soundWrong = soundPool.load(this, R.raw.buttonwrong, 1);
