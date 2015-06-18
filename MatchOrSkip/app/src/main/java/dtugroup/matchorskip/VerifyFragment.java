@@ -16,6 +16,7 @@ public class VerifyFragment extends Fragment {
 
     private Callbacks mCallbacks;
     private boolean right = false;
+    private GameActivity gameActivity;
 
     @Override
     public void onAttach(Activity activity) {
@@ -30,6 +31,7 @@ public class VerifyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        gameActivity = (GameActivity) getActivity();
     }
 
     @Override
@@ -67,23 +69,28 @@ public class VerifyFragment extends Fragment {
             if(params[0].toLowerCase().equals("bonus")) {
                 addPoints = 5;
                 right = true;
+                gameActivity.playSound(4);
             } else {
                 if(params[0].toLowerCase().equals("keep") &&
                         idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 1;
                     right = true;
+                    gameActivity.playSound(2);
                 } else if(params[0].toLowerCase().equals("skip") &&
                         idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
                     right = false;
+                    gameActivity.playSound(1);
                 } else if (params[0].toLowerCase().equals("keep") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = -1;
                     right = false;
+                    gameActivity.playSound(3);
                 } else if (params[0].toLowerCase().equals("skip") &&
                         !idMatch(data[0].getID(), data[1].getID())) {
                     addPoints = 0;
                     right = false;
+                    gameActivity.playSound(1);
                 }
             }
         }
