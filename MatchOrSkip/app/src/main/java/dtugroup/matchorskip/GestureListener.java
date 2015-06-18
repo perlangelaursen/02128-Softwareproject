@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.media.SoundPool;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -22,6 +23,7 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
             if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                 verifyFragment.start("keep");
+
             }
             // Bottom swipe
             else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&

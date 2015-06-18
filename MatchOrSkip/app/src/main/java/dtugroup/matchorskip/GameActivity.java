@@ -3,8 +3,11 @@ package dtugroup.matchorskip;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -13,14 +16,12 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Random;
 
 /**
  * Created by perlangelaursen on 10/06/15
  */
-public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
-        FinishDialogFragment.FinishDialogListener {
+public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks, FinishDialogFragment.FinishDialogListener {
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
     private Image match, current;
@@ -36,6 +37,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private static final String TAG_FRAGMENT = "verify_fragment";
     private int currentID = 0;
     SharedPreferences highscore;
+
+    //Sounds
+    private AudioManager audioManager;
+    private SoundPool soundPool;
+    private float streamVolume;
+    private int soundSkip, soundCorrect, soundWrong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,17 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         newPhotos();
 
         setupCountDown();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        streamVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+        soundCorrect = soundPool.load(this, R.raw.buttoncorrect, 1);
+        soundWrong = soundPool.load(this, R.raw.buttonwrong, 1);
+        soundSkip = soundPool.load(this, R.raw.buttonskip, 1);
     }
 
     private void setupBackButton() {
@@ -225,8 +243,21 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     protected void onPause() {
         super.onPause();
         countDownTimer.cancel();
+        if(soundPool != null){
+            soundPool.release();
+        }
     }
 
+    protected void playSound(int type){
+        if(type == 1){
+            soundPool.play(soundSkip, streamVolume, streamVolume, 1, 0, 1);
+        } else if (type == 2){
+            soundPool.play(soundCorrect, streamVolume, streamVolume, 1, 0 , 1);
+        } else if ( type == 3){
+            soundPool.play(soundWrong, streamVolume, streamVolume, 1, 0, 1);
+        }
+
+    }
     @Override
     protected void onStop() {
         super.onStop();
