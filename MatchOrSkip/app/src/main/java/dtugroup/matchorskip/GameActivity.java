@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -193,7 +194,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(12000, 1000) {
+        countDownTimer = new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(getString(R.string.time0) + millisUntilFinished / 1000);
@@ -253,6 +254,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
+        startActivity(intent);
         finish();
     }
 

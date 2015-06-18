@@ -46,6 +46,7 @@ public class PhotoActivity extends Activity {
                 Intent defaultIntent = new Intent(PhotoActivity.this, GameActivity.class);
                 defaultIntent.putExtra("Card", "Default");
                 startActivity(defaultIntent);
+                finish();
             }
         });
     }
@@ -81,6 +82,7 @@ public class PhotoActivity extends Activity {
                 Bundle extras = data.getExtras();
                 gameIntent.putExtra("Data", extras);
                 startActivity(gameIntent);
+                finish();
             } else {
                 Toast.makeText(this, "Photo was not saved", Toast.LENGTH_LONG).show();
             }

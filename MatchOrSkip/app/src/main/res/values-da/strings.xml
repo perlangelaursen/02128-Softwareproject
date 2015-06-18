@@ -13,6 +13,7 @@
     <string name="gameover">Spillet er over!</string>
     <string name="youscored">Du scorede: </string>
     <string name="congratulations">Tillykke! Du slog din highscore</string>
+    <string name="congratulations2">Tillykke! Du kom med din highscore</string>
     <string name="playagain">Vil du spille igen?</string>
     <string name="typeName">Indtast dit navn</string>
     <string name="play">Spil</string>
@@ -25,4 +26,6 @@
     <string name="saveName">Dit navn er gemt</string>
     <string name="time0">"Tid: "</string>
     <string name="highscoreactivity">HighScore Activity</string>
+    <string name="title_activity_photo">PhotoActivity</string>
+    <string name="reset">Nulstil Highscore</string>
 </resources>
