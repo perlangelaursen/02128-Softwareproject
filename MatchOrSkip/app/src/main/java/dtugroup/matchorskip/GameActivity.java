@@ -42,7 +42,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private AudioManager audioManager;
     private SoundPool soundPool;
     private float streamVolume;
-    private int soundSkip, soundCorrect, soundWrong;
+    private int soundSkip, soundCorrect, soundWrong, soundDouble;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +86,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         soundCorrect = soundPool.load(this, R.raw.buttoncorrect, 1);
         soundWrong = soundPool.load(this, R.raw.buttonwrong, 1);
         soundSkip = soundPool.load(this, R.raw.buttonskip, 1);
+        soundDouble = soundPool.load(this, R.raw.buttondouble, 1);
     }
 
     private void setupBackButton() {
@@ -259,6 +260,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             soundPool.play(soundCorrect, streamVolume, streamVolume, 1, 0 , 1);
         } else if ( type == 3){
             soundPool.play(soundWrong, streamVolume, streamVolume, 1, 0, 1);
+        } else if (type == 4){
+            soundPool.play(soundDouble, streamVolume, streamVolume, 1, 0, 1);
         }
 
     }

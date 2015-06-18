@@ -54,7 +54,6 @@ public class PhotoActivity extends Activity {
                 defaultIntent.putExtra("Card", "Default");
                 defaultIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(defaultIntent);
-                finish();
             }
         });
         backImageView.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +62,12 @@ public class PhotoActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
     }
 
     @Override
@@ -96,9 +101,8 @@ public class PhotoActivity extends Activity {
                 Bundle extras = data.getExtras();
                 gameIntent.putExtra("Data", extras);
                 startActivity(gameIntent);
-                finish();
             } else {
-                Toast.makeText(this, "Photo was not saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Photo was not saved", Toast.LENGTH_SHORT).show();
             }
         }
     }

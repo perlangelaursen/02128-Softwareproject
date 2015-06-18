@@ -69,6 +69,7 @@ public class VerifyFragment extends Fragment {
             if(params[0].toLowerCase().equals("bonus")) {
                 addPoints = 5;
                 right = true;
+                gameActivity.playSound(4);
             } else {
                 if(params[0].toLowerCase().equals("keep") &&
                         idMatch(data[0].getID(), data[1].getID())) {
