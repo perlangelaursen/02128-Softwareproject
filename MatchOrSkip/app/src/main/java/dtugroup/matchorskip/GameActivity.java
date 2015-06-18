@@ -161,10 +161,11 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void newCurrentPhoto() {
         this.current = (Image) randomCurrentPhoto(currentIndex);
-        currentphoto.setImageResource(current.getDrawImage());
 
         if(current.getBitmap() != null) {
             currentphoto.setImageBitmap(current.getBitmap());
+        } else {
+            currentphoto.setImageResource(current.getDrawImage());
         }
     }
 
@@ -222,7 +223,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
 
             public void onFinish() {
-                timer.setText(getString(R.string.time));
+                timer.setText(0);
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
