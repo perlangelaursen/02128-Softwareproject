@@ -212,7 +212,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupGestureListenerToPhoto() {
-        mGestureDetector = new GestureDetector(this, new GestureListener(verifyFragment));
+        mGestureDetector = new GestureDetector(this, new GestureListener(verifyFragment, this));
 
         this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
         currentphoto.setOnTouchListener(new OnTouchListener() {
@@ -237,6 +237,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
+    }
+
+    public Image getCurrent() {
+        return current;
     }
 
     @Override
