@@ -3,8 +3,6 @@
     package="dtugroup.matchorskip" >
 
     <uses-permission android:name="ANDROID.PERMISSION.CAMERA"/>
-    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"

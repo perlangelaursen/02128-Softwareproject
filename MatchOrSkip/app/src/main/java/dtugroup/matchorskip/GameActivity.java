@@ -93,16 +93,16 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         if (getIntent().getStringExtra("Card").equals("Camera")) {
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            Bitmap rotated = rotate(image);
-            bonus = new Image(this, "Bonus", rotated, true);
+            //Bitmap rotated = rotate(image);
+            bonus = new Image(this, "Bonus", image, true);
         }
     }
-    private Bitmap rotate(Bitmap bitmap){
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        return rotated;
-    }
+  //  private Bitmap rotate(Bitmap bitmap){
+    //    Matrix matrix = new Matrix();
+      //  matrix.postRotate(90);
+        //Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        //return rotated;
+    //}
 
     private void setupImageArray() {
         images = new Image[3][10];
