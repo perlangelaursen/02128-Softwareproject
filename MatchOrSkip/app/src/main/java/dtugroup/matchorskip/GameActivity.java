@@ -203,6 +203,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
 
             public void onFinish() {
+                timer.setText(getString(R.string.time));
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();

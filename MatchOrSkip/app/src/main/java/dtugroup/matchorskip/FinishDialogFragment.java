@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 /**
  * Created by perlangelaursen on 15/06/15.
@@ -57,7 +59,14 @@ public class FinishDialogFragment extends DialogFragment {
             }
 
             final EditText nameView = new EditText(getActivity());
-            builder.setView(nameView);
+            nameView.setSingleLine();
+            FrameLayout frameLayout = new FrameLayout(getActivity());
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(60, 0, 60, 0);
+            nameView.setLayoutParams(params);
+            frameLayout.addView(nameView);
+            builder.setView(frameLayout);
 
             builder.setNeutralButton(getString(R.string.submit), new DialogInterface.OnClickListener() {
                 @Override
