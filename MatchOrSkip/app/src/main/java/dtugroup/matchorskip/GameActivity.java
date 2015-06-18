@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -91,16 +92,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         if (getIntent().getStringExtra("Card").equals("Camera")) {
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            //Bitmap rotated = rotate(image);
             bonus = new Image(this, "Bonus", image, true);
         }
     }
-  //  private Bitmap rotate(Bitmap bitmap){
-    //    Matrix matrix = new Matrix();
-      //  matrix.postRotate(90);
-        //Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        //return rotated;
-    //}
 
     private void setupImageArray() {
         images = new Image[3][10];
@@ -214,7 +208,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(12000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(""+millisUntilFinished / 1000);
@@ -275,10 +269,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
-        /*Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
+        Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);*/
-        finish();
+        startActivity(intent);
     }
 
     @Override
