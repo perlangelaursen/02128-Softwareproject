@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -59,6 +61,8 @@ public class FinishDialogFragment extends DialogFragment {
             }
 
             final EditText nameView = new EditText(getActivity());
+            InputFilter filter = new InputFilter.LengthFilter(8);
+            nameView.setFilters(new InputFilter[] {filter});
             nameView.setSingleLine();
             FrameLayout frameLayout = new FrameLayout(getActivity());
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
