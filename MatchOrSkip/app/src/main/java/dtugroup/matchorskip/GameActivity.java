@@ -131,10 +131,12 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         this.current = (Image) randomCurrentPhoto(currentIndex);
 
         matchphoto.setImageResource(match.getDrawImage());
-        currentphoto.setImageResource(current.getDrawImage());
+
 
         if(current.getBitmap() != null) {
             currentphoto.setImageBitmap(current.getBitmap());
+        } else {
+            currentphoto.setImageResource(current.getDrawImage());
         }
     }
 
@@ -254,8 +256,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
-        startActivity(intent);
         finish();
     }
 
