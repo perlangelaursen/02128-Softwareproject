@@ -276,9 +276,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     public void onDialogNeutralClick() {
         Toast.makeText(GameActivity.this, getString(R.string.saveName), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
+        /*Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
+        startActivity(intent);*/
+        finish();
     }
 
     @Override
