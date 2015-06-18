@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.app.Activity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -8,11 +9,13 @@ import android.view.MotionEvent;
  */
 public class GestureListener extends GestureDetector.SimpleOnGestureListener {
     private VerifyFragment verifyFragment;
+    private GameActivity activity;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private static final int SWIPE_MIN_DISTANCE = 120;
 
-    public GestureListener(VerifyFragment verifyFragment) {
+    public GestureListener(VerifyFragment verifyFragment, GameActivity activity) {
         this.verifyFragment = verifyFragment;
+        this.activity = activity;
     }
 
     @Override
@@ -38,7 +41,9 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        verifyFragment.start("bonus");
+        if(activity.getCurrent().isBonus()) {
+            verifyFragment.start("bonus");
+        }
         return true;
     }
 }
