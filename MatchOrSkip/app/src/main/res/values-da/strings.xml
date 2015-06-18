@@ -4,7 +4,7 @@
 
     <string name="action_settings">Indstillinger</string>
     <string name="playbutton">Spil spillet</string>
-    <string name="time">Tid: 0</string>
+    <string name="time">0</string>
     <string name="score">Score: 0</string>
     <string name="highscore">Highscore: 0</string>
     <string name="highscore_title">Highscore</string>

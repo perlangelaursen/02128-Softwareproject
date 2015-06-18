@@ -1,9 +1,7 @@
 package dtugroup.matchorskip;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
@@ -216,7 +214,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
 
             public void onFinish() {
-                timer.setText(0);
+                timer.setText(getString(R.string.time));
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
@@ -319,9 +317,5 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
         }
         return minKey;
-    }
-
-    public static void setDefaultImage() {
-
     }
 }
