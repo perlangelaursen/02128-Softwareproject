@@ -2,12 +2,14 @@ package dtugroup.matchorskip;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -20,11 +22,16 @@ public class PhotoActivity extends Activity {
     private ImageView cameraImageView;
     private ImageView defaultImageView;
     private ImageView backImageView;
+    private TextView photoActivityTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+
+        //Title
+        photoActivityTitle = (TextView) findViewById(R.id.photoActivityTitle);
+        photoActivityTitle.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
 
         //Buttons
         cameraImageView = (ImageView) findViewById(R.id.cameraImg);
