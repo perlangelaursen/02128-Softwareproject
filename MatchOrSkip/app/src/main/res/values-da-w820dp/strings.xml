@@ -33,4 +33,6 @@
     <string name="chooseabonuscard">Choose a bonus card</string>
     <string name="camerabutton">CameraButton</string>
     <string name="highscorebutton">High Score</string>
+    <string name="instructions_title">Instruktioner</string>
+    <string name="instructionsactivity">Instruktioner Activity</string>
 </resources>
