@@ -3,12 +3,14 @@ package dtugroup.matchorskip;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,12 +28,17 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private TextView timer, score, highscoreView;
     private ImageView matchphoto, currentphoto;
     private Image match, current;
-    private ImageView bonus, backImageView;
+    private ImageView bonus, rush;
+    private boolean rushAppeared;
+    private boolean rushTime = false;
+    int k;
+    private ImageView backImageView;
     private Image[][] images;
     private int currentIndex;
     private int currentInc = 0;
     private int currentScore;
     private int lastHighScore;
+    private int cardsTotal = 0;
     private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
@@ -66,10 +73,14 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
         setupBonusImage();
 
+        setupRushCard();
+
         newPhotos();
 
         setupCountDown();
     }
+
+
 
     private void setupViews() {
         this.timer = (TextView) findViewById(R.id.timeView);
@@ -116,7 +127,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupBonusImage() {
-        bonus = new Image(this, "Bonus", R.drawable.bonus, true);
+        bonus = new Image(this, "Bonus", R.drawable.bonus, true, false);
         if (getIntent().getStringExtra("Card").equals("Camera")) {
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
@@ -124,47 +135,56 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         }
     }
 
+    private void setupRushCard() {
+        Random r = new Random();
+        k = r.nextInt(31);
+        rush = new Image(this, "Rush", R.drawable.titleps, false, true);
+        rushAppeared = false;
+        Log.i("PRINT", "" + k + " " + rushAppeared);
+    }
+
     private void setupImageArray() {
         images = new Image[3][10];
         // Miscellaneous
-        images[0][0] = new Image(this, "A01", R.drawable.a01, false);
-        images[0][1] = new Image(this, "A02", R.drawable.a02, false);
-        images[0][2] = new Image(this, "A03", R.drawable.a03, false);
-        images[0][3] = new Image(this, "A04", R.drawable.a04, false);
-        images[0][4] = new Image(this, "A05", R.drawable.a05, false);
-        images[0][5] = new Image(this, "A06", R.drawable.a06, false);
-        images[0][6] = new Image(this, "A07", R.drawable.a07, false);
-        images[0][7] = new Image(this, "A08", R.drawable.a08, false);
-        images[0][8] = new Image(this, "A09", R.drawable.a09, false);
-        images[0][9] = new Image(this, "A10", R.drawable.a10, false);
+        images[0][0] = new Image(this, "A01", R.drawable.a01, false, false);
+        images[0][1] = new Image(this, "A02", R.drawable.a02, false, false);
+        images[0][2] = new Image(this, "A03", R.drawable.a03, false, false);
+        images[0][3] = new Image(this, "A04", R.drawable.a04, false, false);
+        images[0][4] = new Image(this, "A05", R.drawable.a05, false, false);
+        images[0][5] = new Image(this, "A06", R.drawable.a06, false, false);
+        images[0][6] = new Image(this, "A07", R.drawable.a07, false, false);
+        images[0][7] = new Image(this, "A08", R.drawable.a08, false, false);
+        images[0][8] = new Image(this, "A09", R.drawable.a09, false, false);
+        images[0][9] = new Image(this, "A10", R.drawable.a10, false, false);
 
         // Food
-        images[1][0] = new Image(this, "J01", R.drawable.j01, false);
-        images[1][1] = new Image(this, "J02", R.drawable.j02, false);
-        images[1][2] = new Image(this, "J03", R.drawable.j03, false);
-        images[1][3] = new Image(this, "J04", R.drawable.j04, false);
-        images[1][4] = new Image(this, "J05", R.drawable.j05, false);
-        images[1][5] = new Image(this, "J06", R.drawable.j06, false);
-        images[1][6] = new Image(this, "J07", R.drawable.j07, false);
-        images[1][7] = new Image(this, "J08", R.drawable.j08, false);
-        images[1][8] = new Image(this, "J09", R.drawable.j09, false);
-        images[1][9] = new Image(this, "J10", R.drawable.j10, false);
+        images[1][0] = new Image(this, "J01", R.drawable.j01, false, false);
+        images[1][1] = new Image(this, "J02", R.drawable.j02, false, false);
+        images[1][2] = new Image(this, "J03", R.drawable.j03, false, false);
+        images[1][3] = new Image(this, "J04", R.drawable.j04, false, false);
+        images[1][4] = new Image(this, "J05", R.drawable.j05, false, false);
+        images[1][5] = new Image(this, "J06", R.drawable.j06, false, false);
+        images[1][6] = new Image(this, "J07", R.drawable.j07, false, false);
+        images[1][7] = new Image(this, "J08", R.drawable.j08, false, false);
+        images[1][8] = new Image(this, "J09", R.drawable.j09, false, false);
+        images[1][9] = new Image(this, "J10", R.drawable.j10, false, false);
 
         // Sightseeing
-        images[2][0] = new Image(this, "T01", R.drawable.t01, false);
-        images[2][1] = new Image(this, "T02", R.drawable.t02, false);
-        images[2][2] = new Image(this, "T03", R.drawable.t03, false);
-        images[2][3] = new Image(this, "T04", R.drawable.t04, false);
-        images[2][4] = new Image(this, "T05", R.drawable.t05, false);
-        images[2][5] = new Image(this, "T06", R.drawable.t06, false);
-        images[2][6] = new Image(this, "T07", R.drawable.t07, false);
-        images[2][7] = new Image(this, "T08", R.drawable.t08, false);
-        images[2][8] = new Image(this, "T09", R.drawable.t09, false);
-        images[2][9] = new Image(this, "T10", R.drawable.t10, false);
+        images[2][0] = new Image(this, "T01", R.drawable.t01, false, false);
+        images[2][1] = new Image(this, "T02", R.drawable.t02, false, false);
+        images[2][2] = new Image(this, "T03", R.drawable.t03, false, false);
+        images[2][3] = new Image(this, "T04", R.drawable.t04, false, false);
+        images[2][4] = new Image(this, "T05", R.drawable.t05, false, false);
+        images[2][5] = new Image(this, "T06", R.drawable.t06, false, false);
+        images[2][6] = new Image(this, "T07", R.drawable.t07, false, false);
+        images[2][7] = new Image(this, "T08", R.drawable.t08, false, false);
+        images[2][8] = new Image(this, "T09", R.drawable.t09, false, false);
+        images[2][9] = new Image(this, "T10", R.drawable.t10, false, false);
     }
 
     private void newPhotos() {
         currentInc++;
+        cardsTotal++;
         currentIndex = currentInc % 3;
         this.match = randomMatchPhoto(currentIndex);
         this.current = (Image) randomCurrentPhoto(currentIndex);
@@ -181,7 +201,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void newCurrentPhoto() {
         this.current = (Image) randomCurrentPhoto(currentIndex);
-
+        cardsTotal++;
         if(current.getBitmap() != null) {
             currentphoto.setImageBitmap(current.getBitmap());
         } else {
@@ -199,6 +219,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         Random r = new Random();
         int j = r.nextInt(11);
         while (true) {
+            if(k == cardsTotal && !rushAppeared){
+                rushAppeared = true;
+                return rush;
+            }
             if (j != currentID) {
                 currentID = j;
                 if (j == 10) {
@@ -237,13 +261,49 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void setupCountDown() {
         countDownTimer = new CountDownTimer(60000, 1000) {
-
+            int textColor = timer.getCurrentTextColor();
+        int rushTimer = 6;
+            boolean rushTapped = false;
             public void onTick(long millisUntilFinished) {
-                timer.setText(""+millisUntilFinished / 1000);
+                if (rushTime) { //Bonus time
+                    timer.setTextColor(Color.RED);
+                    timer.setTextSize(40);
+                    rushTapped = true;
+                    rushTimer--;
+                    timer.setText("" + rushTimer);
+                    if (rushTimer == 0) {
+                        rushTime = false;
+                    }
+                } else {
+                    timer.setTextColor(textColor);
+                    timer.setTextSize(30);
+                    if (rushAppeared && rushTapped) { //Add bonus time
+                        timer.setText("" + (millisUntilFinished + 7000) / 1000);
+                    } else {
+                        timer.setText("" + millisUntilFinished / 1000);
+                    }
+                }
+            }
+            public void onFinish() {
+                timer.setText(getString(R.string.time));
+                if(rushAppeared && rushTapped){
+                    timerLeft(); // New timer
+                } else {
+                    timer.setText(""+0);
+                    new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
+                }
+            }
+        }.start();
+    }
+
+    private void timerLeft() {
+        countDownTimer = new CountDownTimer(8000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timer.setText("" + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
-                timer.setText(getString(R.string.time));
+                timer.setText(""+0);
                 new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
             }
         }.start();
@@ -367,5 +427,13 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
         }
         return minKey;
+    }
+
+    public void setRushTime() {
+        rushTime = true;
+    }
+
+    public boolean rushTime() {
+        return rushTime;
     }
 }

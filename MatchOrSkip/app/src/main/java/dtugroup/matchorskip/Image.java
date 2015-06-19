@@ -11,19 +11,22 @@ public class Image extends ImageView {
     private String id;
     private int drawImage;
     private boolean bonus;
+    private boolean rush;
     private Bitmap bitmap;
 
-    public Image(Context context, String id, int drawImage, boolean bonus) {
+    public Image(Context context, String id, int drawImage, boolean bonus, boolean rush) {
         super(context);
         this.id = id;
         this.drawImage = drawImage;
         this.bonus = bonus;
+        this.rush = rush;
     }
 
     public Image(Context context, String id, Bitmap bitmap, boolean bonus) {
         super(context);
         this.id = id;
         this.bonus = bonus;
+        this.rush = rush;
         this.drawImage = 0;
         this.bitmap = bitmap;
     }
@@ -45,4 +48,7 @@ public class Image extends ImageView {
     }
 
 
+    public boolean isRush() {
+        return rush;
+    }
 }

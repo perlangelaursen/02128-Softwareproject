@@ -1,5 +1,6 @@
 package dtugroup.matchorskip;
 
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -42,6 +43,8 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
     public boolean onDoubleTap(MotionEvent e) {
         if(activity.getCurrent().isBonus()) {
             verifyFragment.start("bonus");
+        } else if (activity.getCurrent().isRush()){
+            verifyFragment.start("rush");
         }
         return true;
     }
