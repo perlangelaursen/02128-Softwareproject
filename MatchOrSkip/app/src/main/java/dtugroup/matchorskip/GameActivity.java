@@ -306,7 +306,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onDialogNegativeClick() {
-        finish();
+        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override
