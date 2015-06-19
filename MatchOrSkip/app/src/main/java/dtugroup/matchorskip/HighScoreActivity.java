@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,11 +15,22 @@ public class HighScoreActivity extends Activity {
     private SharedPreferences highscore;
     private String[] name = new String[10];
     private int[] point = new int[10];
+    private ImageView backImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
+        backImageView = (ImageView) findViewById(R.id.backImg);
+        backImageView.setImageResource(R.drawable.back);
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 
     public void backToMainMenu(View view) {
