@@ -35,12 +35,6 @@ public class HighScoreActivity extends Activity {
         });
     }
 
-    public void backToMainMenu(View view) {
-        Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
     public void reset(View view) {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         SharedPreferences.Editor editor = highscore.edit();
