@@ -29,6 +29,21 @@ public class HighScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
+        textViewSetupAndFontSetting();
+
+        backImageView = (ImageView) findViewById(R.id.backImg);
+        backImageView.setImageResource(R.drawable.back);
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void textViewSetupAndFontSetting() {
         highScoreTitle = (TextView) findViewById(R.id.highscoreTitle);
         highScoreTitle.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
 
@@ -64,17 +79,6 @@ public class HighScoreActivity extends Activity {
 
         reset = (Button) findViewById(R.id.reset);
         reset.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
-
-        backImageView = (ImageView) findViewById(R.id.backImg);
-        backImageView.setImageResource(R.drawable.back);
-        backImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
     }
 
     public void reset(View view) {
