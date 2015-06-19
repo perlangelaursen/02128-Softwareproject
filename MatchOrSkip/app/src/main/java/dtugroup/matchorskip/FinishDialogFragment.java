@@ -61,7 +61,7 @@ public class FinishDialogFragment extends DialogFragment {
             }
 
             final EditText nameView = new EditText(getActivity());
-            InputFilter filter = new InputFilter.LengthFilter(8);
+            InputFilter filter = new InputFilter.LengthFilter(10);
             nameView.setFilters(new InputFilter[] {filter});
             nameView.setSingleLine();
             FrameLayout frameLayout = new FrameLayout(getActivity());

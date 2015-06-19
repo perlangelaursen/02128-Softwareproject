@@ -6,11 +6,11 @@
     <string name="playbutton">Spil spillet</string>
     <string name="time">0</string>
     <string name="score">Score: 0</string>
-    <string name="highscore">Highscore: 0</string>
+    <string name="highscore">Highest Score: 0</string>
     <string name="highscore_title">Highscore</string>
     <string name="fail">Forkert!</string>
     <string name="right">Rigtigt!</string>
-    <string name="gameover">Spillet er over!</string>
+    <string name="gameover">Spillet er slut!</string>
     <string name="youscored">Du scorede: </string>
     <string name="congratulations">Tillykke! Du slog din highscore</string>
     <string name="congratulations2">Tillykke! Du kom ind på highscore listen</string>
@@ -21,7 +21,7 @@
     <string name="submit">Indsend</string>
     <string name="instructions">Instruktioner</string>
     <string name="BackToMain">Tilbage til hovedmenuen</string>
-    <string name="highscore0">"Highscore: "</string>
+    <string name="highscore0">"Highest Score: "</string>
     <string name="score0">"Score: "</string>
     <string name="saveName">Dit navn er gemt</string>
     <string name="time0">"Tid: "</string>
@@ -30,7 +30,7 @@
     <string name="reset">Nulstil Highscore</string>
     <string name="CameraButton">CameraButton</string>
     <string name="backButton">BackButton</string>
-    <string name="chooseabonuscard">Choose a bonus card</string>
+    <string name="chooseabonuscard">Vælg et bonus kort</string>
     <string name="camerabutton">CameraButton</string>
     <string name="highscorebutton">High Score</string>
 </resources>

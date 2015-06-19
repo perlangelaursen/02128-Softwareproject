@@ -6,7 +6,7 @@
     <string name="playbutton">Play the game</string>
     <string name="time">0</string>
     <string name="score">Score: 0</string>
-    <string name="highscore">Highscore: 0</string>
+    <string name="highscore">Highest Score: 0</string>
     <string name="highscore_title">Highscore</string>
     <string name="fail">Wrong!</string>
     <string name="right">Correct!</string>
@@ -21,7 +21,7 @@
     <string name="submit">Submit</string>
     <string name="instructions">Instructions</string>
     <string name="BackToMain">Back To Main Menu</string>
-    <string name="highscore0">"Highscore: "</string>
+    <string name="highscore0">"Highest Score: "</string>
     <string name="score0">"Score: "</string>
     <string name="saveName">Your name has been saved</string>
     <string name="time0">"Time: "</string>
