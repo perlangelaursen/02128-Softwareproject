@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="40sp"/>
     <Button
-        android:layout_width="130dp"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/play"
@@ -24,7 +24,7 @@
         android:id="@+id/playbutton"
         android:onClick="startGame"/>
     <Button
-        android:layout_width="130dp"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/playbutton"
         android:layout_centerHorizontal="true"
@@ -33,7 +33,7 @@
         android:textAllCaps="false"
         android:onClick="instructions"/>
     <Button
-        android:layout_width="130dp"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:id="@+id/highscoreButton"
         android:layout_below="@+id/instructions"
