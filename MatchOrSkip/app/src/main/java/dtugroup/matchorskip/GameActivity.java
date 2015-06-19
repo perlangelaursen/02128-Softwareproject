@@ -54,17 +54,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     public void start() {
-        this.timer = (TextView) findViewById(R.id.timeView);
-        timer.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
-        this.score = (TextView) findViewById(R.id.scoreview);
-        score.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
-        this.highscoreView = (TextView) findViewById(R.id.highscoreView);
-        highscoreView.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
-        lastHighScore = getHighestScore();
-        highscoreView.setText(getString(R.string.highscore0) + lastHighScore);
-        this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
-        this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
-        this.currentScore = 0;
+        setupViews();
 
         setupBackButton();
 
@@ -79,6 +69,20 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         newPhotos();
 
         setupCountDown();
+    }
+
+    private void setupViews() {
+        this.timer = (TextView) findViewById(R.id.timeView);
+        timer.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        this.score = (TextView) findViewById(R.id.scoreview);
+        score.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        this.highscoreView = (TextView) findViewById(R.id.highscoreView);
+        highscoreView.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        lastHighScore = getHighestScore();
+        highscoreView.setText(getString(R.string.highscore0) + lastHighScore);
+        this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
+        this.currentphoto = (ImageView) findViewById(R.id.currentphoto);
+        this.currentScore = 0;
     }
 
     @Override
@@ -232,7 +236,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     private void setupCountDown() {
-        countDownTimer = new CountDownTimer(60000, 1000) {
+        countDownTimer = new CountDownTimer(10000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText(""+millisUntilFinished / 1000);

@@ -3,8 +3,11 @@ package dtugroup.matchorskip;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,12 +20,17 @@ public class HighScoreActivity extends Activity {
     private String[] name = new String[10];
     private int[] point = new int[10];
     private ImageView backImageView;
-    private TextView highScoreView;
+    private TextView highScoreTitle, point1, name1, point2, name2, point3,
+            name3, point4, name4, point5, name5;
+    private Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
+
+        textViewSetupAndFontSetting();
+
         backImageView = (ImageView) findViewById(R.id.backImg);
         backImageView.setImageResource(R.drawable.back);
         backImageView.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +41,44 @@ public class HighScoreActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void textViewSetupAndFontSetting() {
+        highScoreTitle = (TextView) findViewById(R.id.highscoreTitle);
+        highScoreTitle.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        point1 = (TextView) findViewById(R.id.point1);
+        point1.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        name1 = (TextView) findViewById(R.id.name1);
+        name1.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        point2 = (TextView) findViewById(R.id.point2);
+        point2.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        name2 = (TextView) findViewById(R.id.name2);
+        name2.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        point3 = (TextView) findViewById(R.id.point3);
+        point3.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        name3 = (TextView) findViewById(R.id.name3);
+        name3.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        point4 = (TextView) findViewById(R.id.point4);
+        point4.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        name4 = (TextView) findViewById(R.id.name4);
+        name4.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        point5 = (TextView) findViewById(R.id.point5);
+        point5.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        name5 = (TextView) findViewById(R.id.name5);
+        name5.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        reset = (Button) findViewById(R.id.reset);
+        reset.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
     }
 
     public void reset(View view) {
