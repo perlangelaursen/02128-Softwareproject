@@ -16,6 +16,7 @@ public class HighScoreActivity extends Activity {
     private String[] name = new String[10];
     private int[] point = new int[10];
     private ImageView backImageView;
+    private TextView highScoreView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

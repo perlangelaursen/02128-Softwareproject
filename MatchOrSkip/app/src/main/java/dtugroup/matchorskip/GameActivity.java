@@ -3,6 +3,7 @@ package dtugroup.matchorskip;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -54,8 +55,11 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     public void start() {
         this.timer = (TextView) findViewById(R.id.timeView);
+        timer.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
         this.score = (TextView) findViewById(R.id.scoreview);
+        score.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
         this.highscoreView = (TextView) findViewById(R.id.highscoreView);
+        highscoreView.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
         lastHighScore = getHighestScore();
         highscoreView.setText(getString(R.string.highscore0) + lastHighScore);
         this.matchphoto = (ImageView) findViewById(R.id.matchphoto);
