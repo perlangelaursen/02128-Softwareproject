@@ -103,7 +103,7 @@
     </GridLayout>
 
     <Button
-        android:layout_width="160sp"
+        android:layout_width="170sp"
         android:layout_height="wrap_content"
         android:text="@string/reset"
         android:id="@+id/reset"

@@ -38,7 +38,7 @@
         android:id="@+id/highscoreButton"
         android:layout_below="@+id/instructions"
         android:layout_centerHorizontal="true"
-        android:text="@string/highscorebutton"
+        android:text="@string/highscore_title"
         android:textAllCaps="false"
         android:onClick="highscore"/>
 </RelativeLayout>
