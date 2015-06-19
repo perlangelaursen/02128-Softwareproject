@@ -56,7 +56,6 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     public void start() {
         overlay = (ImageView) findViewById(R.id.overlay);
-        overlay.setAlpha(30);
 
         setupViews();
 
@@ -139,9 +138,8 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private void setupRushCard() {
         Random r = new Random();
         k = r.nextInt(31);
-        rush = new Image(this, "Rush", R.drawable.titleps, false, true);
+        rush = new Image(this, "Rush", R.drawable.rushhour, false, true);
         rushAppeared = false;
-        Log.i("PRINT", "" + k + " " + rushAppeared);
     }
 
     private void setupImageArray() {

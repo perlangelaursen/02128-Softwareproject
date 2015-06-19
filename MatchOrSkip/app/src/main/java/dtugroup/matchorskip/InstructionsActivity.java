@@ -18,12 +18,14 @@ public class InstructionsActivity extends Activity {
     private int page, maxPage;
     private ImageView backImageView;
     private ImageView instructions;
-    private TextView pageNumber;
+    private TextView pageNumber, imageText;
     private int[] instructionsArray;
+    private String[] textArray;
     private GestureDetector gestureDetector;
     private TextView instructions_title;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private static final int SWIPE_MIN_DISTANCE = 120;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,13 @@ public class InstructionsActivity extends Activity {
         titleSetup();
 
         pageNumber = (TextView) findViewById(R.id.page_number);
+        pageNumber.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        imageText = (TextView) findViewById(R.id.imageText);
+        imageText.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
         gestureHandlingSetup();
         backButtonSetup();
         imageArraySetup();
+        textArraySetup();
     }
 
     private void titleSetup() {
@@ -68,16 +74,30 @@ public class InstructionsActivity extends Activity {
     }
 
     private void imageArraySetup() {
-        instructionsArray = new int[6];
+        instructionsArray = new int[8];
         instructionsArray[0] = R.drawable.i01;
         instructionsArray[1] = R.drawable.i02;
         instructionsArray[2] = R.drawable.i03;
         instructionsArray[3] = R.drawable.i04;
         instructionsArray[4] = R.drawable.i05;
         instructionsArray[5] = R.drawable.i06;
+        instructionsArray[6] = R.drawable.i07;
+        instructionsArray[7] = R.drawable.i08;
         page = 0;
         maxPage = instructionsArray.length;
         instructions.setImageResource(instructionsArray[page]);
+    }
+
+    private void textArraySetup() {
+        textArray = new String[8];
+        textArray[0] = "Match the card from your deck with the reference card to gain points";
+        textArray[1] = "Swipe up to skip when the cards don't match";
+        textArray[2] = "Swipe down to keep matching cards";
+        textArray[3] = "Keeping non-matching cards costs points";
+        textArray[4] = "Double tap your chosen bonus card to get bonus points";
+        textArray[5] = "Double tap the \"Rush Hour\" card to start \"Rush Hour\"";
+        textArray[6] = "In \"Rush Hour\" mode, both skipping...";
+        textArray[7] = "...and keeping cards give points";
     }
 
     public void pgeUp() {
@@ -95,6 +115,7 @@ public class InstructionsActivity extends Activity {
     public void update() {
         instructions.setImageResource(instructionsArray[page]);
         pageNumber.setText((page + 1) + " / " + maxPage);
+        imageText.setText(textArray[page]);
     }
 
     @Override

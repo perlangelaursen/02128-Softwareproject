@@ -81,7 +81,7 @@
 
             <ImageView
                 android:id="@+id/overlay"
-                android:background="#000000"
+                android:src="@drawable/overlay"
                 android:layout_height="225dp"
                 android:layout_width="162dp"
                 android:layout_centerVertical="true"
