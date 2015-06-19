@@ -3,19 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InstructionsActivity"
-    android:background="#ffffff">
+    tools:context=".InstructionsActivity">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg2"
+        android:scaleType="centerCrop"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/instructions_title"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
         android:id="@+id/instructions_title"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#434343"
         android:text="1 / 6"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
@@ -41,6 +50,7 @@
         android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="#434343"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="32dp"

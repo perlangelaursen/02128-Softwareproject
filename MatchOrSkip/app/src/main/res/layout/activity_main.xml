@@ -2,42 +2,74 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin_top"
-    android:paddingBottom="@dimen/activity_vertical_margin_bottom" tools:context=".MainActivity" >
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#000000">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:layout_alignParentTop="true"
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp" />
-    <Button
-        android:layout_width="135dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="117dp"
+        android:id="@+id/imageView" />
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
         android:layout_centerInParent="true"
-        android:text="@string/play"
-        android:textAllCaps="false"
-        android:id="@+id/playbutton"
-        android:onClick="startGame" />
+        android:layout_below="@+id/playbutton"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/instructions"
+        android:layout_marginTop="8dp" />
+
     <Button
         android:layout_width="135dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/playbutton"
+        android:layout_height="50dp"
+        android:id="@+id/playbutton"
+        android:text="@string/play"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:onClick="startGame"
+        android:background="#F53838" />
+
+    <Button
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:textColor="#FFFFFF"
         android:id="@+id/instructions"
         android:text="@string/instructions"
         android:textAllCaps="false"
-        android:onClick="instructions" />
+        android:onClick="instructions"
+        android:background="#F53838"
+        android:layout_below="@+id/playbutton"
+        android:layout_alignStart="@+id/playbutton"
+        android:layout_marginTop="10dp" />
     <Button
         android:layout_width="135dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:id="@+id/highscoreButton"
-        android:layout_below="@+id/instructions"
-        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
         android:text="@string/highscore_title"
         android:textAllCaps="false"
-        android:onClick="highscore"/>
+        android:onClick="highscore"
+        android:background="#F53838"
+        android:layout_below="@+id/instructions"
+        android:layout_alignStart="@+id/instructions"
+        android:layout_marginTop="10dp"/>
 </RelativeLayout>

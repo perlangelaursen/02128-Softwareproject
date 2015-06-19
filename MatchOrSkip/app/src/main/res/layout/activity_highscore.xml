@@ -4,22 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HighScoreActivity" >
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg2"
+        android:scaleType="centerCrop"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/highscore_title"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
         android:id="@+id/highscoreTitle" />
+
     <GridLayout
         android:layout_width="300sp"
         android:layout_height="205sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60sp"
+        android:layout_marginTop="65sp"
         android:rowCount="10"
         android:id="@+id/gridLayout"
         android:columnCount="2"
-        android:background="#ffffff">
+        android:background="#FFFFFF">
         <TextView
             android:layout_marginTop="5sp"
             android:id="@+id/point1"
@@ -28,7 +37,9 @@
             android:textSize="26sp"
             android:maxLength="3"
             android:layout_width="60sp"
-            android:layout_marginStart="20sp"/>
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"
+            android:gravity="right" />
         <TextView
             android:layout_marginTop="5sp"
             android:id="@+id/name1"
@@ -37,7 +48,8 @@
             android:textSize="26sp"
             android:maxLength="10"
             android:layout_width="180sp"
-            android:layout_marginStart="20sp" />
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"/>
         <TextView
             android:id="@+id/point2"
             android:layout_row="1"
@@ -45,7 +57,9 @@
             android:textSize="26sp"
             android:maxLength="3"
             android:layout_width="60sp"
-            android:layout_marginStart="20sp"/>
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"
+            android:gravity="right"/>
         <TextView
             android:id="@+id/name2"
             android:layout_row="1"
@@ -53,7 +67,8 @@
             android:textSize="26sp"
             android:maxLength="10"
             android:layout_width="180sp"
-            android:layout_marginStart="20sp" />
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"/>
         <TextView
             android:id="@+id/point3"
             android:layout_row="2"
@@ -61,7 +76,9 @@
             android:textSize="26sp"
             android:layout_width="60sp"
             android:maxLength="3"
-            android:layout_marginStart="20sp"/>
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"
+            android:gravity="right"/>
         <TextView
             android:id="@+id/name3"
             android:layout_row="2"
@@ -69,7 +86,8 @@
             android:textSize="26sp"
             android:maxLength="10"
             android:layout_width="180sp"
-            android:layout_marginStart="20sp" />
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"/>
         <TextView
             android:id="@+id/point4"
             android:layout_row="3"
@@ -77,7 +95,9 @@
             android:textSize="26sp"
             android:layout_width="60sp"
             android:maxLength="3"
-            android:layout_marginStart="20sp"/>
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"
+            android:gravity="right"/>
         <TextView
             android:id="@+id/name4"
             android:layout_row="3"
@@ -85,7 +105,8 @@
             android:textSize="26sp"
             android:maxLength="10"
             android:layout_width="180sp"
-            android:layout_marginStart="20sp" />
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"/>
         <TextView
             android:id="@+id/point5"
             android:layout_row="4"
@@ -93,7 +114,9 @@
             android:textSize="26sp"
             android:maxLength="3"
             android:layout_width="60sp"
-            android:layout_marginStart="20sp"/>
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"
+            android:gravity="right"/>
         <TextView
             android:id="@+id/name5"
             android:layout_row="4"
@@ -101,18 +124,22 @@
             android:textSize="26sp"
             android:maxLength="10"
             android:layout_width="180sp"
-            android:layout_marginStart="20sp" />
+            android:layout_marginStart="20sp"
+            android:textColor="#434343"/>
     </GridLayout>
 
     <Button
         android:layout_width="170sp"
         android:layout_height="wrap_content"
+        android:background="#F53838"
+        android:textColor="#FFFFFF"
         android:text="@string/reset"
         android:id="@+id/reset"
         android:textAllCaps="false"
         android:onClick="reset"
         android:layout_alignBottom="@+id/backImg"
         android:layout_centerHorizontal="true" />
+
     <ImageView
         android:layout_height="30dp"
         android:layout_width="30dp"

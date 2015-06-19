@@ -4,6 +4,12 @@
     android:background="#ffffff">
 
     <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg2"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
         android:id="@+id/clock"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -27,6 +33,7 @@
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/score"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
@@ -38,6 +45,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/highscore"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"

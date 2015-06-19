@@ -2,18 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
-    tools:context="dtugroup.matchorskip.PhotoActivity"
-    android:background="#ffffff">
+    tools:context="dtugroup.matchorskip.PhotoActivity">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg2"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/chooseabonuscard"
         android:textSize="30sp"
+        android:textColor="#FFFFFF"
         android:id="@+id/photoActivityTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <ImageView
         android:layout_height="30dp"

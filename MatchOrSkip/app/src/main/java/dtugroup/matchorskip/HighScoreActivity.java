@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -149,7 +150,10 @@ public class HighScoreActivity extends Activity {
         super.onResume();
 
         GridLayout layout = (GridLayout) findViewById(R.id.gridLayout);
-        layout.getBackground().setAlpha(40);
+        AlphaAnimation alpha = new AlphaAnimation(0.9F, 0.9F);
+        alpha.setDuration(0);
+        alpha.setFillAfter(true);
+        layout.startAnimation(alpha);
 
         update();
         setTextView(R.id.name1, R.id.point1, 1);
