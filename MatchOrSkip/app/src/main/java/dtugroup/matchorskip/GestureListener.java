@@ -1,6 +1,5 @@
 package dtugroup.matchorskip;
 
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -20,19 +19,15 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        try {
-            // Top swipe
-            if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
-                    Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("keep");
-            }
-            // Bottom swipe
-            else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
-                    Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                verifyFragment.start("skip");
-            }
-        } catch (Exception e) {
-            // nothing for now
+        // Top swipe
+        if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
+                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+            verifyFragment.start("keep");
+        }
+        // Bottom swipe
+        else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
+                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+            verifyFragment.start("skip");
         }
 
 

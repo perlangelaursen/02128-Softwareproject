@@ -30,6 +30,10 @@ public class HighScoreActivity extends Activity {
 
         textViewSetupAndFontSetting();
 
+        backButtonSetupWithListener();
+    }
+
+    private void backButtonSetupWithListener() {
         backImageView = (ImageView) findViewById(R.id.backImg);
         backImageView.setImageResource(R.drawable.back);
         backImageView.setOnClickListener(new View.OnClickListener() {
@@ -117,17 +121,27 @@ public class HighScoreActivity extends Activity {
         for(int i = 1; i < 10; i++) {
             int key = point[i];
             int j = i - 1;
-            while(j >= 0 && key > point[j]) {
-                temp1 = point[j+1];
-                temp2 = name[j+1];
-                point[j + 1] = point[j];
-                name[j + 1] = name[j];
-                point[j] = temp1;
-                name[j] = temp2;
+            while(keyAndIndexCheck(key, j)) {
+                swapPlacesInArray(j);
                 j--;
             }
             point[j + 1] = key;
         }
+    }
+
+    private void swapPlacesInArray(int j) {
+        int temp1;
+        String temp2;
+        temp1 = point[j+1];
+        temp2 = name[j+1];
+        point[j + 1] = point[j];
+        name[j + 1] = name[j];
+        point[j] = temp1;
+        name[j] = temp2;
+    }
+
+    private boolean keyAndIndexCheck(int key, int j) {
+        return j >= 0 && key > point[j];
     }
 
     @Override

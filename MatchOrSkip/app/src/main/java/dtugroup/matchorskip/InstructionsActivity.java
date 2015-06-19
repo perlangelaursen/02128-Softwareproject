@@ -29,10 +29,20 @@ public class InstructionsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        instructions_title = (TextView) findViewById(R.id.instructions_title);
-        instructions_title.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        titleSetup();
 
         pageNumber = (TextView) findViewById(R.id.page_number);
+        gestureHandlingSetup();
+        backButtonSetup();
+        imageArraySetup();
+    }
+
+    private void titleSetup() {
+        instructions_title = (TextView) findViewById(R.id.instructions_title);
+        instructions_title.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+    }
+
+    private void gestureHandlingSetup() {
         gestureDetector = new GestureDetector(this, new CustomGestureDetector());
         instructions = (ImageView) findViewById(R.id.instructions);
         instructions.setOnTouchListener(new View.OnTouchListener() {
@@ -42,6 +52,9 @@ public class InstructionsActivity extends Activity {
                 return true;
             }
         });
+    }
+
+    private void backButtonSetup() {
         backImageView = (ImageView) findViewById(R.id.backImg);
         backImageView.setImageResource(R.drawable.back);
         backImageView.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +65,9 @@ public class InstructionsActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void imageArraySetup() {
         instructionsArray = new int[6];
         instructionsArray[0] = R.drawable.i01;
         instructionsArray[1] = R.drawable.i02;

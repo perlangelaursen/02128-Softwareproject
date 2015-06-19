@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 /**
  * Created by perlangelaursen on 14/06/15.
@@ -75,7 +74,7 @@ public class VerifyFragment extends Fragment {
                 gameActivity.setRushTime();
                 gameActivity.playSound(4);
             } else {
-                if(gameActivity.rushTime()){
+                if(gameActivity.getRushTime()){
                     if(params[0].toLowerCase().equals("keep") || params[0].toLowerCase().equals("skip")){
                         addPoints = 1;
                         right = false;

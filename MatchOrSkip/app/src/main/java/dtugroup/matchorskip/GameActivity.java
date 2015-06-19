@@ -24,21 +24,15 @@ import java.util.Random;
 /**
  * Created by perlangelaursen on 10/06/15
  */
-public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks, FinishDialogFragment.FinishDialogListener {
+public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks,
+        FinishDialogFragment.FinishDialogListener {
     private TextView timer, score, highscoreView;
-    private ImageView matchphoto, currentphoto, overlay;
+    private ImageView matchphoto, currentphoto, overlay, backImageView, bonus, rush;
     private Image match, current;
-    private ImageView bonus, rush;
     private boolean rushAppeared;
     private boolean rushTime = false;
-    int k;
-    private ImageView backImageView;
     private Image[][] images;
-    private int currentIndex;
-    private int currentInc = 0;
-    private int currentScore;
-    private int lastHighScore;
-    private int cardsTotal = 0;
+    private int currentIndex, currentInc = 0, currentScore, lastHighScore, cardsTotal = 0, k;
     private CountDownTimer countDownTimer;
     private GestureDetector mGestureDetector;
     private VerifyFragment verifyFragment;
@@ -102,6 +96,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     @Override
     protected void onResume() {
         super.onResume();
+        setUpSound();
+    }
+
+    private void setUpSound() {
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         streamVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
                 / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -134,7 +132,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         if (getIntent().getStringExtra("Card").equals("Camera")) {
             Bundle extras = getIntent().getBundleExtra("Data");
             Bitmap image = (Bitmap) extras.get("data");
-            bonus = new Image(this, "Bonus", image, true);
+            bonus = new Image(this, "Bonus", image, true, false);
         }
     }
 
@@ -222,22 +220,37 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         Random r = new Random();
         int j = r.nextInt(11);
         while (true) {
-            if(k == cardsTotal && !rushAppeared){
-                rushAppeared = true;
+            if (isRushCard()) {
                 return rush;
             }
-            if (j != currentID) {
+            else if (isNotTheSameCardAsBefore(j)) {
                 currentID = j;
-                if (j == 10) {
-                    return bonus;
-                } else {
-                    return images[i][j];
-                }
+                return getEitherBonusOrRegularImageView(i, j);
             } else {
                 j = r.nextInt(11);
             }
         }
 
+    }
+
+    private ImageView getEitherBonusOrRegularImageView(int i, int j) {
+        if (j == 10) {
+            return bonus;
+        } else {
+            return images[i][j];
+        }
+    }
+
+    private boolean isNotTheSameCardAsBefore(int j) {
+        return j != currentID;
+    }
+
+    private boolean isRushCard() {
+        if(k == cardsTotal && !rushAppeared){
+            rushAppeared = true;
+            return true;
+        }
+        return false;
     }
 
     private void setupVerifyFragment() {
@@ -265,37 +278,50 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     private void setupCountDown() {
         countDownTimer = new CountDownTimer(60000, 1000) {
             int textColor = timer.getCurrentTextColor();
-        int rushTimer = 6;
+            int rushTimer = 6;
             boolean rushTapped = false;
             public void onTick(long millisUntilFinished) {
                 if (rushTime) { //Bonus time
-                    overlay.setVisibility(View.VISIBLE);
-                    timer.setTextColor(Color.RED);
-                    timer.setTextSize(40);
-                    rushTapped = true;
-                    rushTimer--;
-                    timer.setText("" + rushTimer);
-                    if (rushTimer == 0) {
-                        rushTime = false;
-                    }
+                    bonusTimePeriod();
                 } else {
-                    overlay.setVisibility(View.INVISIBLE);
-                    timer.setTextColor(textColor);
-                    timer.setTextSize(30);
-                    if (rushAppeared && rushTapped) { //Add bonus time
-                        timer.setText("" + (millisUntilFinished + 7000) / 1000);
-                    } else {
-                        timer.setText("" + millisUntilFinished / 1000);
-                    }
+                    regularTimePeriod(millisUntilFinished);
                 }
             }
+
             public void onFinish() {
                 timer.setText(getString(R.string.time));
                 if(rushAppeared && rushTapped){
                     timerLeft(); // New timer
                 } else {
-                    timer.setText(""+0);
+                    timer.setText("" + 0);
                     new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
+                }
+            }
+
+            private void regularTimePeriod(long millisUntilFinished) {
+                overlay.setVisibility(View.INVISIBLE);
+                timer.setTextColor(textColor);
+                timer.setTextSize(30);
+                remainingTimeBasedOnBonusRound(millisUntilFinished);
+            }
+
+            private void remainingTimeBasedOnBonusRound(long millisUntilFinished) {
+                if (rushAppeared && rushTapped) { //Add bonus time
+                    timer.setText("" + (millisUntilFinished + 7000) / 1000);
+                } else {
+                    timer.setText("" + millisUntilFinished / 1000);
+                }
+            }
+
+            private void bonusTimePeriod() {
+                overlay.setVisibility(View.VISIBLE);
+                timer.setTextColor(Color.RED);
+                timer.setTextSize(40);
+                rushTapped = true;
+                rushTimer--;
+                timer.setText("" + rushTimer);
+                if (rushTimer == 0) {
+                    rushTime = false;
                 }
             }
         }.start();
@@ -328,14 +354,19 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     protected void playSound(int type){
-        if(type == 1){
-            soundPool.play(soundSkip, streamVolume, streamVolume, 1, 0, 1);
-        } else if (type == 2){
-            soundPool.play(soundCorrect, streamVolume, streamVolume, 1, 0 , 1);
-        } else if ( type == 3){
-            soundPool.play(soundWrong, streamVolume, streamVolume, 1, 0, 1);
-        } else if (type == 4){
-            soundPool.play(soundDouble, streamVolume, streamVolume, 1, 0, 1);
+        switch (type) {
+            case 1:
+                soundPool.play(soundSkip, streamVolume, streamVolume, 1, 0, 1);
+                break;
+            case 2:
+                soundPool.play(soundCorrect, streamVolume, streamVolume, 1, 0 , 1);
+                break;
+            case 3:
+                soundPool.play(soundWrong, streamVolume, streamVolume, 1, 0, 1);
+                break;
+            case 4:
+                soundPool.play(soundDouble, streamVolume, streamVolume, 1, 0, 1);
+                break;
         }
 
     }
@@ -352,20 +383,33 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     @Override
     public void onPostExecute(int results, boolean input) {
-        if(currentScore + results >= 0) {
-            currentScore += results;
-        }
-        score.setText(getString(R.string.score0) + currentScore);
-        if (currentScore > getHighestScore()) {
-            highscoreView.setText(getString(R.string.highscore0) + currentScore);
-        }
-        score.setText(getString(R.string.score0) + currentScore);
-        highscoreView.setText(getString(R.string.highscore0) + getHighestScore());
+        updateScore(results);
+        isCurrentScoreAHighscore();
+
+        imageUpdateBasedOnInput(input);
+    }
+
+    private void imageUpdateBasedOnInput(boolean input) {
         if(input) {
             newPhotos();
         } else {
             newCurrentPhoto();
         }
+    }
+
+    private void isCurrentScoreAHighscore() {
+        if (currentScore > getHighestScore()) {
+            highscoreView.setText(getString(R.string.highscore0) + currentScore);
+        } else {
+            highscoreView.setText(getString(R.string.highscore0) + getHighestScore());
+        }
+    }
+
+    private void updateScore(int results) {
+        if(currentScore + results >= 0) {
+            currentScore += results;
+        }
+        score.setText(getString(R.string.score0) + currentScore);
     }
 
     @Override
@@ -403,11 +447,15 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         for (int i = 0; i < 9; i++) {
             int value = i+1;
             String key = "intkey"+ value;
-            if (lastHighScore <= highscore.getInt(key,0)) {
+            if (highScoreCheck(key)) {
                 lastHighScore = highscore.getInt(key,0);
             }
         }
         return lastHighScore;
+    }
+
+    private boolean highScoreCheck(String key) {
+        return lastHighScore <= highscore.getInt(key,0);
     }
 
     public void saveHighscore(int score, String name) {
@@ -427,18 +475,22 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         int minKey = 1;
         for (int i = 2; i <= 5; i++) {
             int key = i;
-            if (highscore.getInt("intkey" + key, 0) <= highscore.getInt("intkey" + minKey, 0)) {
+            if (lowestHighscore(minKey, key)) {
                 minKey = key;
             }
         }
         return minKey;
     }
 
+    private boolean lowestHighscore(int minKey, int key) {
+        return highscore.getInt("intkey" + key, 0) <= highscore.getInt("intkey" + minKey, 0);
+    }
+
     public void setRushTime() {
         rushTime = true;
     }
 
-    public boolean rushTime() {
+    public boolean getRushTime() {
         return rushTime;
     }
 }

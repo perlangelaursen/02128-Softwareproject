@@ -35,4 +35,8 @@
     <string name="highscorebutton">High Score</string>
     <string name="instructions_title">Instruktioner</string>
     <string name="instructionsactivity">Instruktioner Activity</string>
+    <string name="endGameDialog">Vil du afslutte spillet?</string>
+    <string name="endgame">Slut spillet</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
 </resources>

@@ -22,7 +22,7 @@ public class Image extends ImageView {
         this.rush = rush;
     }
 
-    public Image(Context context, String id, Bitmap bitmap, boolean bonus) {
+    public Image(Context context, String id, Bitmap bitmap, boolean bonus, boolean rush) {
         super(context);
         this.id = id;
         this.bonus = bonus;
@@ -46,7 +46,6 @@ public class Image extends ImageView {
     public String getID() {
         return id;
     }
-
 
     public boolean isRush() {
         return rush;

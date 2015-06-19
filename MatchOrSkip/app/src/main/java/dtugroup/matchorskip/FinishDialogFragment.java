@@ -48,42 +48,7 @@ public class FinishDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.gameover));
         setCancelable(false);
-        if (finishDialogListener.getCurrentScore() >= finishDialogListener.getLowestScore()
-                && finishDialogListener.getCurrentScore()!=0) {
-            if (finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore()) {
-                builder.setMessage(getString(R.string.congratulations) + "\n\n" +
-                        getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                        + "\n\n" + getString(R.string.typeName));
-            } else {
-                builder.setMessage(getString(R.string.congratulations2) + "\n\n" +
-                        getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                        + "\n\n" + getString(R.string.typeName));
-            }
-
-            final EditText nameView = new EditText(getActivity());
-            InputFilter filter = new InputFilter.LengthFilter(10);
-            nameView.setFilters(new InputFilter[] {filter});
-            nameView.setSingleLine();
-            FrameLayout frameLayout = new FrameLayout(getActivity());
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(60, 0, 60, 0);
-            nameView.setLayoutParams(params);
-            frameLayout.addView(nameView);
-            builder.setView(frameLayout);
-
-            builder.setNeutralButton(getString(R.string.submit), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    name = nameView.getText().toString();
-                    finishDialogListener.saveHighscore(finishDialogListener.getCurrentScore(), name);
-                    finishDialogListener.onDialogNeutralClick();
-                }
-            });
-        } else {
-            builder.setMessage(getString(R.string.youscored) + finishDialogListener.getCurrentScore()
-                    + "\n\n" + getString(R.string.playagain));
-        }
+        verifyIfScoreIsHighScore(builder);
         builder.setPositiveButton(getString(R.string.play), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -99,6 +64,66 @@ public class FinishDialogFragment extends DialogFragment {
         });
 
         return builder.create();
+    }
+
+    private void verifyIfScoreIsHighScore(AlertDialog.Builder builder) {
+        if (isHighScore()) {
+            typeOfHighScore(builder);
+
+            final EditText nameView = setupEditText(builder);
+
+            submitButton(builder, nameView);
+        } else {
+            builder.setMessage(getString(R.string.youscored) + finishDialogListener.getCurrentScore()
+                    + "\n\n" + getString(R.string.playagain));
+        }
+    }
+
+    private void submitButton(AlertDialog.Builder builder, final EditText nameView) {
+        builder.setNeutralButton(getString(R.string.submit), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                name = nameView.getText().toString();
+                finishDialogListener.saveHighscore(finishDialogListener.getCurrentScore(), name);
+                finishDialogListener.onDialogNeutralClick();
+            }
+        });
+    }
+
+    private EditText setupEditText(AlertDialog.Builder builder) {
+        final EditText nameView = new EditText(getActivity());
+        InputFilter filter = new InputFilter.LengthFilter(10);
+        nameView.setFilters(new InputFilter[] {filter});
+        nameView.setSingleLine();
+        FrameLayout frameLayout = new FrameLayout(getActivity());
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(60, 0, 60, 0);
+        nameView.setLayoutParams(params);
+        frameLayout.addView(nameView);
+        builder.setView(frameLayout);
+        return nameView;
+    }
+
+    private void typeOfHighScore(AlertDialog.Builder builder) {
+        if (isTheHighestScore()) {
+            builder.setMessage(getString(R.string.congratulations) + "\n\n" +
+                    getString(R.string.youscored) + finishDialogListener.getCurrentScore()
+                    + "\n\n" + getString(R.string.typeName));
+        } else {
+            builder.setMessage(getString(R.string.congratulations2) + "\n\n" +
+                    getString(R.string.youscored) + finishDialogListener.getCurrentScore()
+                    + "\n\n" + getString(R.string.typeName));
+        }
+    }
+
+    private boolean isTheHighestScore() {
+        return finishDialogListener.getCurrentScore() > finishDialogListener.getHighestScore();
+    }
+
+    private boolean isHighScore() {
+        return finishDialogListener.getCurrentScore() >= finishDialogListener.getLowestScore()
+                && finishDialogListener.getCurrentScore()!=0;
     }
 
     public String getName() {
