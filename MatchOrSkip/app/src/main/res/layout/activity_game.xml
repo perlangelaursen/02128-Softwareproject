@@ -2,14 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/clock"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
     <TextView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:text="@string/time"
         android:textSize="30sp"
         android:id="@+id/timeView"
-        android:background="@drawable/clock"
         android:gravity="center_vertical|center_horizontal"
         android:layout_alignTop="@+id/scoreview"
         android:layout_centerHorizontal="true" />
