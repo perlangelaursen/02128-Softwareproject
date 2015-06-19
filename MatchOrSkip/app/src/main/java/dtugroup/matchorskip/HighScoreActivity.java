@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -92,6 +93,10 @@ public class HighScoreActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        GridLayout layout = (GridLayout) findViewById(R.id.gridLayout);
+        layout.getBackground().setAlpha(40);
+
         update();
         setTextView(R.id.name1, R.id.point1, 1);
         setTextView(R.id.name2,R.id.point2,2);
