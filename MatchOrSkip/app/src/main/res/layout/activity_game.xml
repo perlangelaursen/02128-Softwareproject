@@ -78,6 +78,15 @@
                 android:layout_width="162dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/overlay"
+                android:background="#000000"
+                android:layout_height="225dp"
+                android:layout_width="162dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible"/>
         </RelativeLayout>
 
         <RelativeLayout

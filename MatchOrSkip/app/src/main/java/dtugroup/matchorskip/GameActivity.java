@@ -26,7 +26,7 @@ import java.util.Random;
  */
 public class GameActivity extends FragmentActivity implements VerifyFragment.Callbacks, FinishDialogFragment.FinishDialogListener {
     private TextView timer, score, highscoreView;
-    private ImageView matchphoto, currentphoto;
+    private ImageView matchphoto, currentphoto, overlay;
     private Image match, current;
     private ImageView bonus, rush;
     private boolean rushAppeared;
@@ -61,6 +61,9 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
     }
 
     public void start() {
+        overlay = (ImageView) findViewById(R.id.overlay);
+        overlay.setAlpha(30);
+
         setupViews();
 
         setupBackButton();
@@ -266,6 +269,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             boolean rushTapped = false;
             public void onTick(long millisUntilFinished) {
                 if (rushTime) { //Bonus time
+                    overlay.setVisibility(View.VISIBLE);
                     timer.setTextColor(Color.RED);
                     timer.setTextSize(40);
                     rushTapped = true;
@@ -275,6 +279,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
                         rushTime = false;
                     }
                 } else {
+                    overlay.setVisibility(View.INVISIBLE);
                     timer.setTextColor(textColor);
                     timer.setTextSize(30);
                     if (rushAppeared && rushTapped) { //Add bonus time
