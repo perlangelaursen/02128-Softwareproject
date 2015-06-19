@@ -2,6 +2,7 @@ package dtugroup.matchorskip;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ public class InstructionsActivity extends Activity {
     private TextView pageNumber;
     private int[] instructionsArray;
     private GestureDetector gestureDetector;
+    private TextView instructions_title;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private static final int SWIPE_MIN_DISTANCE = 120;
 
@@ -27,6 +29,9 @@ public class InstructionsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
+        instructions_title = (TextView) findViewById(R.id.instructions_title);
+        instructions_title.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
         pageNumber = (TextView) findViewById(R.id.page_number);
         gestureDetector = new GestureDetector(this, new CustomGestureDetector());
         instructions = (ImageView) findViewById(R.id.instructions);
