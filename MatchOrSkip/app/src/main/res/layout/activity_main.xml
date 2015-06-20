@@ -4,13 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#000000">
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/bg"
-        android:scaleType="centerCrop"/>
+    android:background="@drawable/bg">
 
     <ImageView
         android:layout_width="140dp"

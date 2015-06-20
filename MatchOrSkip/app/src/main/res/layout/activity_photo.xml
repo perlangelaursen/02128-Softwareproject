@@ -2,13 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
+    android:background="@drawable/bg2"
     tools:context="dtugroup.matchorskip.PhotoActivity">
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/bg2"
-        android:scaleType="centerCrop"/>
 
     <TextView
         android:layout_width="wrap_content"
