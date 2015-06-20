@@ -90,14 +90,14 @@ public class InstructionsActivity extends Activity {
 
     private void textArraySetup() {
         textArray = new String[8];
-        textArray[0] = "Match the card from your deck with the reference card to gain points";
-        textArray[1] = "Swipe up to skip when the cards don't match";
-        textArray[2] = "Swipe down to keep matching cards";
-        textArray[3] = "Keeping non-matching cards costs points";
-        textArray[4] = "Double tap your chosen bonus card to get bonus points";
-        textArray[5] = "Double tap the \"Rush Hour\" card to start \"Rush Hour\"";
-        textArray[6] = "In \"Rush Hour\" mode, both skipping...";
-        textArray[7] = "...and keeping cards give points";
+        textArray[0] = getString(R.string.textarray0);
+        textArray[1] = getString(R.string.textarray1);
+        textArray[2] = getString(R.string.textarray2);
+        textArray[3] = getString(R.string.textarray3);
+        textArray[4] = getString(R.string.textarray4);
+        textArray[5] = getString(R.string.textarray5);
+        textArray[6] = getString(R.string.textarray6);
+        textArray[7] = getString(R.string.textarray7);
     }
 
     public void pgeUp() {

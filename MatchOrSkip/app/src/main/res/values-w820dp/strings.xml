@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Swipe a selfie</string>
     <string name="game_activity">Game Activity</string>
@@ -39,4 +40,12 @@
     <string name="endgame">End game</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="textarray0">Match the card from your deck with the reference card to gain points</string>
+    <string name="textarray1">Swipe up to skip when the cards don\'t match</string>
+    <string name="textarray2">Swipe down to keep matching cards</string>
+    <string name="textarray3">Keeping non-matching cards costs points</string>
+    <string name="textarray4">Double tap your chosen bonus card to get bonus points</string>
+    <string name="textarray5">Double tap the \"Rush Hour\" card to start \"Rush Hour\"</string>
+    <string name="textarray6">In \"Rush Hour\" mode, both skipping...</string>
+    <string name="textarray7">...and keeping cards gives points</string>
 </resources>

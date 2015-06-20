@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Swipe a selfie</string>
     <string name="game_activity">Spil Aktivitet</string>
@@ -39,4 +40,12 @@
     <string name="endgame">Slut spillet</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="textarray0">Match kortet fra dit deck med reference kortet for at få point</string>
+    <string name="textarray1">Swipe op for at skippe hvis kortene ikke matcher</string>
+    <string name="textarray2">Swipe ned for at beholde ens kort</string>
+    <string name="textarray3">Beholder man ikke-matchende kort koster det point</string>
+    <string name="textarray4">Double tap dit valgte bonus kort for at få bonus point</string>
+    <string name="textarray5">Double tap \"Rush Hour\" kortet for at starte \"Rush Hour\"</string>
+    <string name="textarray6">I \"Rush Hour\" mode, både skippe...</string>
+    <string name="textarray7">...og beholde kort giver point</string>
 </resources>
