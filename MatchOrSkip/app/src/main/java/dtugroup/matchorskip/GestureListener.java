@@ -19,14 +19,10 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        // Top swipe
-        if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
-                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+        if (topSwipe(e1, e2, velocityY)) {
             verifyFragment.start("keep");
         }
-        // Bottom swipe
-        else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
-                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+        else if (bottomSwipe(e1, e2, velocityY)) {
             verifyFragment.start("skip");
         }
 
@@ -34,13 +30,31 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
         return true;
     }
 
+    private boolean bottomSwipe(MotionEvent e1, MotionEvent e2, float velocityY) {
+        return e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE &&
+                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY;
+    }
+
+    private boolean topSwipe(MotionEvent e1, MotionEvent e2, float velocityY) {
+        return e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE &&
+                Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY;
+    }
+
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        if(activity.getCurrent().isBonus()) {
+        if(isBonusCard()) {
             verifyFragment.start("bonus");
-        } else if (activity.getCurrent().isRush()){
+        } else if (isRushHourCard()){
             verifyFragment.start("rush");
         }
         return true;
+    }
+
+    private boolean isRushHourCard() {
+        return activity.getCurrent().isRush();
+    }
+
+    private boolean isBonusCard() {
+        return activity.getCurrent().isBonus();
     }
 }
