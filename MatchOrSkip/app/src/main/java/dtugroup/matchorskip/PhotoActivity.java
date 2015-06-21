@@ -22,7 +22,7 @@ public class PhotoActivity extends Activity {
     private ImageView cameraImageView;
     private ImageView defaultImageView;
     private ImageView backImageView;
-    private TextView photoActivityTitle;
+    private TextView photoActivityTitle, text1, text2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,12 @@ public class PhotoActivity extends Activity {
         //Title
         photoActivityTitle = (TextView) findViewById(R.id.photoActivityTitle);
         photoActivityTitle.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+
+        //Button text
+        text1 = (TextView) findViewById(R.id.textView1);
+        text1.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
+        text2 = (TextView) findViewById(R.id.textView2);
+        text2.setTypeface(Typeface.createFromAsset(getAssets(), "ComingSoon.ttf"));
 
         //Buttons
         cameraImageView = (ImageView) findViewById(R.id.cameraImg);
