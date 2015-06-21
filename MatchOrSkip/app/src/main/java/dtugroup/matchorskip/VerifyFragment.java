@@ -15,7 +15,7 @@ public class VerifyFragment extends Fragment {
     }
 
     private Callbacks mCallbacks;
-    private boolean right = false;
+    private boolean updateAllCards = false;
     private GameActivity gameActivity;
 
     @Override
@@ -68,12 +68,10 @@ public class VerifyFragment extends Fragment {
         private void imageMatch(String[] params) {
             if(isBonusOrRush(params[0], "bonus")) {
                 addPoints = 5;
-                right = true;
+                updateAllCards = true;
                 gameActivity.playSound(4);
             } else if (isBonusOrRush(params[0], "rush")){
-                gameActivity.setRushTime();
-                gameActivity.playSound(4);
-                right = false;
+                startRushTime();
             } else {
                 if(isRushTime()){
                     rushTimeCheck(params[0]);
@@ -83,6 +81,12 @@ public class VerifyFragment extends Fragment {
             }
         }
 
+        private void startRushTime() {
+            gameActivity.setRushTime();
+            gameActivity.playSound(4);
+            updateAllCards = false;
+        }
+
         private boolean isRushTime() {
             return gameActivity.getRushTime();
         }
@@ -90,7 +94,7 @@ public class VerifyFragment extends Fragment {
         private void rushTimeCheck(String input) {
             if(isBonusOrRush(input, "keep") || isBonusOrRush(input, "skip")){
                 addPoints = 1;
-                right = false;
+                updateAllCards = false;
                 gameActivity.playSound(2);
             }
         }
@@ -98,19 +102,19 @@ public class VerifyFragment extends Fragment {
         private void regularImageCheck(String input) {
             if (isKeepAndCardMatch(input)) {
                 addPoints = 1;
-                right = true;
+                updateAllCards = true;
                 gameActivity.playSound(2);
             } else if (isSkipAndCardMatch(input)) {
                 addPoints = 0;
-                right = false;
+                updateAllCards = false;
                 gameActivity.playSound(1);
             } else if (isKeepAndCardDoesNotMatch(input)) {
                 addPoints = -1;
-                right = false;
+                updateAllCards = false;
                 gameActivity.playSound(3);
             } else if (isSkipAndCardDoesNotMatch(input)) {
                 addPoints = 0;
-                right = false;
+                updateAllCards = false;
                 gameActivity.playSound(1);
             }
         }
@@ -141,7 +145,7 @@ public class VerifyFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            callbacks.onPostExecute(addPoints, right);
+            callbacks.onPostExecute(addPoints, updateAllCards);
         }
 
         private boolean idMatch(String id1, String id2) {
