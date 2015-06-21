@@ -147,12 +147,6 @@ public class HighScoreActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        GridLayout layout = (GridLayout) findViewById(R.id.gridLayout);
-        AlphaAnimation alpha = new AlphaAnimation(0.9F, 0.9F);
-        alpha.setDuration(0);
-        alpha.setFillAfter(true);
-        layout.startAnimation(alpha);
-
         update();
         setTextView(R.id.name1, R.id.point1, 1);
         setTextView(R.id.name2,R.id.point2,2);

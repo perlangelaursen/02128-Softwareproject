@@ -24,7 +24,7 @@
         android:rowCount="10"
         android:id="@+id/gridLayout"
         android:columnCount="2"
-        android:background="#FFFFFF">
+        android:background="@drawable/scoreboard">
         <TextView
             android:layout_marginTop="5sp"
             android:id="@+id/point1"
