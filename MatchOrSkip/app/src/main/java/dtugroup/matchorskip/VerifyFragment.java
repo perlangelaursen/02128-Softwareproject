@@ -73,6 +73,7 @@ public class VerifyFragment extends Fragment {
             } else if (isBonusOrRush(params[0], "rush")){
                 gameActivity.setRushTime();
                 gameActivity.playSound(4);
+                right = false;
             } else {
                 if(isRushTime()){
                     rushTimeCheck(params[0]);
