@@ -117,8 +117,6 @@ public class HighScoreActivity extends Activity {
     }
 
     public void sort() {
-        int temp1 = 0;
-        String temp2 = null;
         for(int i = 1; i < 10; i++) {
             int key = point[i];
             int j = i - 1;
