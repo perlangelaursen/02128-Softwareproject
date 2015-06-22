@@ -287,11 +287,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
             }
 
             public void onFinish() {
-                timer.setText(getString(R.string.time));
                 if(rushAppeared && rushTapped){
                     timerLeft(); // New timer
                 } else {
-                    timer.setText("" + 0);
+                    timer.setText(getString(R.string.time));
                     new FinishDialogFragment().show(getSupportFragmentManager(), "Game Over");
                 }
             }
