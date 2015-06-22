@@ -48,4 +48,5 @@
     <string name="textarray5">Double tap the \"Rush Hour\" card to start \"Rush Hour\"</string>
     <string name="textarray6">In \"Rush Hour\" mode, both skipping...</string>
     <string name="textarray7">...and keeping cards gives points</string>
+    <string name="photoNotSaved">Photo was not saved</string>
 </resources>

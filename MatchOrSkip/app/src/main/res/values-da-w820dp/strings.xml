@@ -48,4 +48,5 @@
     <string name="textarray5">Double tap på \"Rush Hour\" kortet for at starte \"Rush Hour\"</string>
     <string name="textarray6">I \"Rush Hour\" mode, både skippe...</string>
     <string name="textarray7">...og beholde kort giver point</string>
+    <string name="photoNotSaved">Billedet blev ikke gemt</string>
 </resources>
