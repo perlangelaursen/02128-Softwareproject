@@ -127,24 +127,24 @@ public class InstructionsActivity extends Activity {
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if (leftSwipe(e1, e2, velocityY)) {
+            if (leftSwipe(e1, e2, velocityX)) {
                 pgeDown();
             }
-            else if (rightSwipe(e1, e2, velocityY)) {
+            else if (rightSwipe(e1, e2, velocityX)) {
                 pgeUp();
             }
             update();
             return true;
         }
 
-        private boolean leftSwipe(MotionEvent e1, MotionEvent e2, float velocityY) {
+        private boolean leftSwipe(MotionEvent e1, MotionEvent e2, float velocity) {
             return e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
-                    Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY;
+                    Math.abs(velocity) > SWIPE_THRESHOLD_VELOCITY;
         }
 
-        private boolean rightSwipe(MotionEvent e1, MotionEvent e2, float velocityY) {
+        private boolean rightSwipe(MotionEvent e1, MotionEvent e2, float velocity) {
             return e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE &&
-                    Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY;
+                    Math.abs(velocity) > SWIPE_THRESHOLD_VELOCITY;
         }
     }
 }
