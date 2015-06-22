@@ -49,4 +49,6 @@
     <string name="textarray6">I \"Rush Hour\" mode, både skippe...</string>
     <string name="textarray7">...og beholde kort giver point</string>
     <string name="photoNotSaved">Billedet blev ikke gemt</string>
+    <string name="customphoto">Tag dit eget billede</string>
+    <string name="defaultphoto">Brug standard billedet</string>
 </resources>

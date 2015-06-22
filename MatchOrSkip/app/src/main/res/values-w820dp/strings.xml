@@ -49,4 +49,6 @@
     <string name="textarray6">In \"Rush Hour\" mode, both skipping...</string>
     <string name="textarray7">...and keeping cards gives points</string>
     <string name="photoNotSaved">Photo was not saved</string>
+    <string name="customphoto">Take own photo</string>
+    <string name="defaultphoto">Use default photo</string>
 </resources>
