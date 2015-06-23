@@ -136,7 +136,7 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private void setupRushCard() {
         Random r = new Random();
-        k = r.nextInt(31);
+        k = r.nextInt(30) + 1;
         rush = new Image(this, "Rush", R.drawable.rushhour, false, true);
         rushAppeared = false;
     }
