@@ -432,31 +432,10 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
         return currentScore;
     }
 
-    public int getLowestScore() {
-        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        return highscore.getInt("intkey" + getMinKey(),0);
-    }
-
-    public int getHighestScore() {
-        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
-        for (int i = 0; i < 9; i++) {
-            int value = i+1;
-            String key = "intkey"+ value;
-            if (highScoreCheck(key)) {
-                lastHighScore = highscore.getInt(key,0);
-            }
-        }
-        return lastHighScore;
-    }
-
-    private boolean highScoreCheck(String key) {
-        return lastHighScore <= highscore.getInt(key,0);
-    }
-
     public void saveHighscore(int score, String name) {
         highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
         SharedPreferences.Editor editor = highscore.edit();
-        if (score > highscore.getInt("intkey" + getMinKey(),0)) {
+        if (score > getLowestScore()) {
             editor.remove("intkey" + getMinKey());
             editor.remove("stringkey" + getMinKey());
             editor.putString("stringkey" + getMinKey(), name);
@@ -479,6 +458,27 @@ public class GameActivity extends FragmentActivity implements VerifyFragment.Cal
 
     private boolean lowestHighscore(int minKey, int key) {
         return highscore.getInt("intkey" + key, 0) <= highscore.getInt("intkey" + minKey, 0);
+    }
+
+    public int getLowestScore() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        return highscore.getInt("intkey" + getMinKey(),0);
+    }
+
+    public int getHighestScore() {
+        highscore = this.getSharedPreferences("highscore", MODE_PRIVATE);
+        for (int i = 0; i < 9; i++) {
+            int value = i+1;
+            String key = "intkey"+ value;
+            if (highScoreCheck(key)) {
+                lastHighScore = highscore.getInt(key,0);
+            }
+        }
+        return lastHighScore;
+    }
+
+    private boolean highScoreCheck(String key) {
+        return lastHighScore <= highscore.getInt(key,0);
     }
 
     public void setRushTime() {
