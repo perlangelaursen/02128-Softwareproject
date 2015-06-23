@@ -5,6 +5,6 @@
 \contentsline {section}{\numberline {4}Design}{3}{section.4}
 \contentsline {section}{\numberline {5}Implementation}{4}{section.5}
 \contentsline {section}{\numberline {6}Testing}{7}{section.6}
-\contentsline {section}{\numberline {7}Development process and discussion}{7}{section.7}
-\contentsline {section}{\numberline {8}Responsibilities}{7}{section.8}
+\contentsline {section}{\numberline {7}Development process}{7}{section.7}
+\contentsline {section}{\numberline {8}Responsibilities}{8}{section.8}
 \contentsline {section}{\numberline {9}Sources}{8}{section.9}
